@@ -53,3 +53,4 @@ jobs:
             - .env*
             - **/.idea/**
             - **/.github/**
+            - vendor/**
