@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMenuCategoriesTable extends Migration
+class CreateDishRiceOptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateMenuCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('menu_categories', function (Blueprint $table) {
+        Schema::create('dish_rice_options', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('extra_option')->default(false);
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateMenuCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('menu_categories');
+        Schema::dropIfExists('dish_rice_options');
     }
 }

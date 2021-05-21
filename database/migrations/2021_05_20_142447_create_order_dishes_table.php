@@ -16,12 +16,15 @@ class CreateOrderDishesTable extends Migration
         Schema::create('order_dishes', function (Blueprint $table)
         {
             $table->id();
-            $table->foreignId('dish_id')->constrained('dished', 'id');
+            $table->foreignId('dish_id')->constrained('dishes', 'id');
             $table->foreignId('order_id')->constrained('orders', 'id');
             $table->smallInteger('amount')->default(1);
             $table->decimal('unit_price', 5, 2);
             $table->tinyInteger('btw')->default(9);
             $table->string('remark')->nullable();
+
+            $table->foreignId('rice_option_id')->nullable()->constrained('dish_rice_options', 'id');
+
             $table->timestamps();
         });
     }
