@@ -1,0 +1,77 @@
+$layout-border-width: 4px;
+$layout-border-color: yellow;
+
+$layout-cell-size: 12px;
+$layout-cell-size-sm: 12px;
+$layout-cell-size-md: 16px;
+$layout-cell-size-lg: 20px;
+$layout-cell-size-xl: 25px;
+
+.home-layout {
+  background-color: red;
+  min-height: 100vh;
+
+  .layout-grid {
+    min-height: inherit;
+    padding: 8px;
+
+    display: grid;
+    grid-template-rows: 50px $layout-cell-size $layout-cell-size $layout-cell-size auto $layout-cell-size $layout-cell-size $layout-cell-size;
+    grid-template-columns: $layout-cell-size $layout-cell-size $layout-cell-size auto $layout-cell-size $layout-cell-size $layout-cell-size;
+
+    > .cell {
+      &.all {
+        border: $layout-border-width solid $layout-border-color;
+      }
+
+      &.left {
+        border-left: $layout-border-width solid $layout-border-color;
+      }
+
+      &.top {
+        border-top: $layout-border-width solid $layout-border-color;
+      }
+
+      &.right {
+        border-right: $layout-border-width solid $layout-border-color;
+      }
+
+      &.bottom {
+        border-bottom: $layout-border-width solid $layout-border-color;
+      }
+    }
+
+    > .header {
+      grid-column-start: 1;
+      grid-column-end: 8;
+    }
+  }
+
+  @media (min-width: 576px) {
+    .layout-grid {
+      grid-template-rows: 50px $layout-cell-size-sm $layout-cell-size-sm $layout-cell-size-sm auto $layout-cell-size-sm $layout-cell-size-sm $layout-cell-size-sm;
+      grid-template-columns: $layout-cell-size-sm $layout-cell-size-sm $layout-cell-size-sm auto $layout-cell-size-sm $layout-cell-size-sm $layout-cell-size-sm;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .layout-grid {
+      grid-template-rows: 50px $layout-cell-size-md $layout-cell-size-md $layout-cell-size-md auto $layout-cell-size-md $layout-cell-size-md $layout-cell-size-md;
+      grid-template-columns: $layout-cell-size-md $layout-cell-size-md $layout-cell-size-md auto $layout-cell-size-md $layout-cell-size-md $layout-cell-size-md;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .layout-grid {
+      grid-template-rows: 50px $layout-cell-size-lg $layout-cell-size-lg $layout-cell-size-lg auto $layout-cell-size-lg $layout-cell-size-lg $layout-cell-size-lg;
+      grid-template-columns: $layout-cell-size-lg $layout-cell-size-lg $layout-cell-size-lg auto $layout-cell-size-lg $layout-cell-size-lg $layout-cell-size-lg;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .layout-grid {
+      grid-template-rows: 50px $layout-cell-size-xl $layout-cell-size-xl $layout-cell-size-xl auto $layout-cell-size-xl $layout-cell-size-xl $layout-cell-size-xl;
+      grid-template-columns: $layout-cell-size-xl $layout-cell-size-xl $layout-cell-size-xl auto $layout-cell-size-xl $layout-cell-size-xl $layout-cell-size-xl;
+    }
+  }
+}
