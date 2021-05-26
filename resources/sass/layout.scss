@@ -11,6 +11,8 @@ $layout-cell-size-xl: 25px;
   background-color: red;
   min-height: 100vh;
 
+  color: yellow !important;
+
   .layout-grid {
     min-height: inherit;
     padding: 8px;

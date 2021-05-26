@@ -10311,6 +10311,7 @@ h3 {
 .home-layout {
   background-color: red;
   min-height: 100vh;
+  color: yellow !important;
 }
 .home-layout .layout-grid {
   min-height: inherit;
@@ -10361,4 +10362,15 @@ h3 {
     grid-template-rows: 50px 25px 25px 25px auto 25px 25px 25px;
     grid-template-columns: 25px 25px 25px auto 25px 25px 25px;
   }
+}
+
+.menu .menu-item {
+  display: flex;
+}
+.menu .menu-item > .dotted {
+  border-bottom: 2px dotted yellow;
+  flex-grow: 1;
+  margin-left: 4px;
+  margin-right: 4px;
+  margin-bottom: 4px;
 }

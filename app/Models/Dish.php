@@ -14,8 +14,13 @@ class Dish extends Model
         return $this->hasManyThrough(Allergy::class, DishAllergy::class, 'dish_id', 'id', 'id', 'allergy_id');
     }
 
+    public function category()
+    {
+        return $this->hasOne(MenuCategory::class, 'id', 'category_id ');
+    }
+
     public function getPriceIncAttribute()
     {
-        return  (($this->btw + 100) / 100) * $this->price;
+        return (($this->btw + 100) / 100) * $this->price;
     }
 }
