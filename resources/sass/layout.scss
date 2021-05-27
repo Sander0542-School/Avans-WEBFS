@@ -80,6 +80,10 @@ $layout-cell-size-xl: 25px;
         }
     }
 
+    .content-footer {
+        margin-top: 48px;
+    }
+
     @media (min-width: 576px) {
         .layout-grid {
             grid-template-rows: max-content $layout-cell-size-sm $layout-cell-size-sm $layout-cell-size-sm auto $layout-cell-size-sm $layout-cell-size-sm $layout-cell-size-sm;

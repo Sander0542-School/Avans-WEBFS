@@ -25,12 +25,16 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('', [HomeController::class, 'index'])->name('home.index');
-Route::get('menu', [HomeController::class, 'menu'])->name('home.menu');
-Route::get('news', [HomeController::class, 'news'])->name('home.news');
-Route::get('contact', [HomeController::class, 'contact'])->name('home.contact');
-Route::get('discounts', [HomeController::class, 'discounts'])->name('home.discounts');
+Route::name('home.')->group(function () {
+    Route::get('', [HomeController::class, 'index'])->name('index');
+    Route::get('menu', [HomeController::class, 'menu'])->name('menu');
+    Route::get('news', [HomeController::class, 'news'])->name('news');
+    Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+    Route::get('discounts', [HomeController::class, 'discounts'])->name('discounts');
+});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('dashvoard', function () {
+        return Inertia::render('Dashboard');
+    });
+});
