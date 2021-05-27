@@ -19,7 +19,7 @@ class CreateDishesTable extends Migration
             $table->string('number', 4);
             $table->string('addition', 4)->nullable();
             $table->string('name');
-            $table->string('description');
+            $table->text('description');
             $table->decimal('price',5,2);
             $table->tinyInteger('btw')->default(9);
             $table->tinyInteger('spiciness_level')->nullable();

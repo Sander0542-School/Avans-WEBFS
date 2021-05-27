@@ -1,4 +1,5 @@
 <template>
+  <home-layout>
   <div>
     <div class="container-fluid fixed-top p-4">
       <div class="col-12">
@@ -133,6 +134,7 @@
       </div>
     </div>
   </div>
+  </home-layout>
 </template>
 
 <style scoped>
@@ -140,7 +142,12 @@
 </style>
 
 <script>
+import HomeLayout from '@/Layouts/HomeLayout';
+
 export default {
+  components: {
+    HomeLayout
+  },
   props: {
     canLogin: Boolean,
     canRegister: Boolean,
