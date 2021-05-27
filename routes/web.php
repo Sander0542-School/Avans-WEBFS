@@ -33,6 +33,8 @@ Route::name('home.')->group(function () {
     Route::get('discounts', [HomeController::class, 'discounts'])->name('discounts');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('dashvoard', function () {
+        return Inertia::render('Dashboard');
+    });
+});
