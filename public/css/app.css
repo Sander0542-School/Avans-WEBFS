@@ -10206,6 +10206,12 @@ h3 {
     height: auto !important;
   }
 }
+@font-face {
+  font-family: "chinese_takeawayregular";
+  src: url("/fonts/chinesetakeaway-webfont.woff2") format("woff2"), url("/fonts/chinesetakeaway-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10308,6 +10314,18 @@ h3 {
   font-size: 0.875rem !important;
 }
 
+.transform-vert {
+  transform: scaleX(-1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: black;
+  font-size: 144px;
+  font-weight: bold;
+}
+
 .home-layout {
   background-color: red;
   min-height: 100vh;
@@ -10317,7 +10335,7 @@ h3 {
   min-height: inherit;
   padding: 8px;
   display: grid;
-  grid-template-rows: 50px 12px 12px 12px auto 12px 12px 12px;
+  grid-template-rows: auto 12px 12px 12px auto 12px 12px 12px;
   grid-template-columns: 12px 12px 12px auto 12px 12px 12px;
 }
 .home-layout .layout-grid > .cell.all {
@@ -10338,29 +10356,60 @@ h3 {
 .home-layout .layout-grid > .header {
   grid-column-start: 1;
   grid-column-end: 8;
+  padding-bottom: 8px;
+}
+.home-layout .layout-grid > .header .header-dragon {
+  height: 48px;
+}
+.home-layout .layout-grid > .header .header-title {
+  font-size: 18px;
+  font-family: "chinese_takeawayregular", serif;
+  vertical-align: middle;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+.home-layout .content-header {
+  margin-bottom: 48px;
+}
+.home-layout .content-header .content-dragon {
+  height: 150px;
+}
+.home-layout .content-header .gd-navigation {
+  background-image: linear-gradient(#00effa, #080a63);
+  color: white;
+  border: none;
+  margin: 0 4px;
+  min-width: 100px;
+  border-radius: 0;
 }
 @media (min-width: 576px) {
   .home-layout .layout-grid {
-    grid-template-rows: 50px 12px 12px 12px auto 12px 12px 12px;
+    grid-template-rows: auto 12px 12px 12px auto 12px 12px 12px;
     grid-template-columns: 12px 12px 12px auto 12px 12px 12px;
   }
 }
 @media (min-width: 768px) {
   .home-layout .layout-grid {
-    grid-template-rows: 50px 16px 16px 16px auto 16px 16px 16px;
+    grid-template-rows: auto 16px 16px 16px auto 16px 16px 16px;
     grid-template-columns: 16px 16px 16px auto 16px 16px 16px;
   }
 }
 @media (min-width: 992px) {
   .home-layout .layout-grid {
-    grid-template-rows: 50px 20px 20px 20px auto 20px 20px 20px;
+    grid-template-rows: auto 20px 20px 20px auto 20px 20px 20px;
     grid-template-columns: 20px 20px 20px auto 20px 20px 20px;
   }
 }
 @media (min-width: 1200px) {
   .home-layout .layout-grid {
-    grid-template-rows: 50px 25px 25px 25px auto 25px 25px 25px;
+    grid-template-rows: auto 25px 25px 25px auto 25px 25px 25px;
     grid-template-columns: 25px 25px 25px auto 25px 25px 25px;
+  }
+  .home-layout .layout-grid .header .header-title {
+    font-size: 28px;
+  }
+  .home-layout .content-header .content-dragon {
+    height: 200px;
   }
 }
 

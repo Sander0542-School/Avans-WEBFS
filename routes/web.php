@@ -25,7 +25,11 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('', [HomeController::class, 'index'])->name('home.index');
 Route::get('menu', [HomeController::class, 'menu'])->name('home.menu');
+Route::get('news', [HomeController::class, 'news'])->name('home.news');
+Route::get('contact', [HomeController::class, 'contact'])->name('home.contact');
+Route::get('discounts', [HomeController::class, 'discounts'])->name('home.discounts');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
