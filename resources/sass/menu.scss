@@ -1,14 +1,14 @@
 .menu {
-  .menu-item {
-    display: flex;
+    .menu-item {
+        display: flex;
 
-    > .dotted {
-      border-bottom: 2px dotted yellow;
-      flex-grow: 1;
+        > .dotted {
+            border-bottom: 2px dotted yellow;
+            flex-grow: 1;
 
-      margin-left: 4px;
-      margin-right: 4px;
-      margin-bottom: 4px;
+            margin-left: 4px;
+            margin-right: 4px;
+            margin-bottom: 4px;
+        }
     }
-  }
 }
