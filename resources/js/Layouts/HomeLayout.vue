@@ -11,9 +11,7 @@
                     <div class="col col-lg-4 col-xl-5">
                         <inertia-link :href="route('home.discounts')" class="h-100">
                             <div class="marquee">
-                                <span class="track">
-                                    Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!
-                                </span>
+                                <span class="track">{{ $t('layout.discount') }}</span>
                             </div>
                         </inertia-link>
                     </div>
@@ -62,11 +60,17 @@
                             <inertia-link class="btn gd-navigation" :href="route('home.menu')">Menu</inertia-link>
                             <inertia-link class="btn gd-navigation" :href="route('home.news')">News</inertia-link>
                             <inertia-link class="btn gd-navigation" :href="route('home.contact')">Contact</inertia-link>
+                            <inertia-link class="btn gd-navigation" :href="route('order.index')">Order</inertia-link>
                         </div>
                     </div>
                     <img class="content-dragon float-right d-none d-md-block transform-vert" src="/pictures/dragon-small.png" alt="GoudenDraak"/>
                 </div>
                 <slot></slot>
+                <div class="content-footer">
+                    <div class="languages text-center">
+                        <span class="c-pointer mx-2" v-for="locale in $i18n.availableLocales" @click="changeLocale(locale)">{{ $t(`locale.${locale}`) }}</span>
+                    </div>
+                </div>
             </div>
             <div class="cell"/>
             <div class="cell right"/>
@@ -100,8 +104,15 @@
 </template>
 
 <script>
+import {setI18nLanguage} from '../i18n';
+
 export default {
-    name: "HomeLayout"
+    name: "HomeLayout",
+    methods: {
+        changeLocale(locale) {
+            setI18nLanguage(this.$i18n, locale);
+        }
+    }
 }
 </script>
 
