@@ -2,6 +2,7 @@ require('./bootstrap');
 
 // Import modules...
 import { createApp, h } from 'vue';
+import { setupI18n } from './i18n';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 
@@ -16,6 +17,10 @@ createApp({
 })
     .mixin({ methods: { route } })
     .use(InertiaPlugin)
+    .use(setupI18n({
+        locale: 'nl',
+        fallbackLocale: 'nl',
+    }))
     .mount(el);
 
 InertiaProgress.init({ color: '#4B5563' });
