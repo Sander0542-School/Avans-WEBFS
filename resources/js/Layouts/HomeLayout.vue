@@ -60,7 +60,6 @@
                             <inertia-link class="btn gd-navigation" :href="route('home.menu')">Menu</inertia-link>
                             <inertia-link class="btn gd-navigation" :href="route('home.news')">News</inertia-link>
                             <inertia-link class="btn gd-navigation" :href="route('home.contact')">Contact</inertia-link>
-                            <inertia-link class="btn gd-navigation" :href="route('order.index')">Order</inertia-link>
                         </div>
                     </div>
                     <img class="content-dragon float-right d-none d-md-block transform-vert" src="/pictures/dragon-small.png" alt="GoudenDraak"/>
