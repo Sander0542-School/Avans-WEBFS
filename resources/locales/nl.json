@@ -3,6 +3,12 @@
         "nl": "Nederlands",
         "en": "English"
     },
+    "pages": {
+        "menu": "Menu",
+        "news": "Nieuws",
+        "contact": "Contact",
+        "order": "Bestellen"
+    },
     "layout": {
         "discount": "Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!"
     }

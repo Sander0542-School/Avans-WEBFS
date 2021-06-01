@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -31,6 +32,10 @@ Route::name('home.')->group(function () {
     Route::get('news', [HomeController::class, 'news'])->name('news');
     Route::get('contact', [HomeController::class, 'contact'])->name('contact');
     Route::get('discounts', [HomeController::class, 'discounts'])->name('discounts');
+});
+
+Route::prefix('order')->name('order.')->group(function () {
+    Route::get('', [OrderController::class, 'index'])->name('index');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
