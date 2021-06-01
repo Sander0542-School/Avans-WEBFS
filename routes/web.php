@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CashDeskController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -33,8 +34,16 @@ Route::name('home.')->group(function () {
     Route::get('discounts', [HomeController::class, 'discounts'])->name('discounts');
 });
 
+Route::name('cashdesk.')->group(function () {
+    Route::get('', [CashDeskController::class, 'index'])->name('index');
+    Route::get('dishes', [CashDeskController::class, 'dishes'])->name('dishes');
+    Route::get('news', [CashDeskController::class, 'news'])->name('news');
+    Route::get('contact', [CashDeskController::class, 'contact'])->name('contact');
+    Route::get('discounts', [CashDeskController::class, 'discounts'])->name('discounts');
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('dashvoard', function () {
+    Route::get('dashb       oard', function () {
         return Inertia::render('Dashboard');
     });
 });
