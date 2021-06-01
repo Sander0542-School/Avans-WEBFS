@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Allergy;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,10 @@ class CreateAllergiesTable extends Migration
             $table->string('icon');
             $table->timestamps();
         });
+
+        Allergy::create(['name' => 'Pork', 'icon' => 'fa-bacon']);
+        Allergy::create(['name' => 'Lactose', 'icon' => 'fa-egg']);
+        Allergy::create(['name' => 'Gluten', 'icon' => 'fa-seeding']);
     }
 
     /**
