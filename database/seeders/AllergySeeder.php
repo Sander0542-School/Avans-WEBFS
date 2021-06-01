@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Allergy;
 use Illuminate\Database\Seeder;
 
 class AllergySeeder extends Seeder
@@ -13,6 +14,8 @@ class AllergySeeder extends Seeder
      */
     public function run()
     {
-        //
+        Allergy::create(['name' => 'Pork', 'icon' => 'fa-bacon']);
+        Allergy::create(['name' => 'Lactose', 'icon' => 'fa-egg']);
+        Allergy::create(['name' => 'Gluten', 'icon' => 'fa-seeding']);
     }
 }
