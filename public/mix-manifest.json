@@ -1,8 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
+    "/js/locale-en-json.js": "/js/locale-en-json.js",
+    "/js/locale-nl-json.js": "/js/locale-nl-json.js",
     "/css/app.css": "/css/app.css",
     "/fonts/chinesetakeaway-webfont.woff": "/fonts/chinesetakeaway-webfont.woff",
-    "/fonts/chinesetakeaway-webfont.woff2": "/fonts/chinesetakeaway-webfont.woff2",
-    "/js/locale-nl-json.js": "/js/locale-nl-json.js",
-    "/js/locale-en-json.js": "/js/locale-en-json.js"
+    "/fonts/chinesetakeaway-webfont.woff2": "/fonts/chinesetakeaway-webfont.woff2"
 }
