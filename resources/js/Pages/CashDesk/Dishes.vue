@@ -1,8 +1,9 @@
 <template>
+    <input type="text" v-model="category" placeholder="Filter By Name"/>
     <div class="row">
         <div class="col-sm-8">
             <div class="">
-                <div v-for="category in menu" class="menu">
+                <div v-for="category in filterProductsByCategory" class="menu">
                     <div v-if="category.dishes.length > 0">
                         <h5>{{category.name }}</h5>
                         <div v-for="dish in category.dishes">
@@ -40,10 +41,27 @@ export default {
         Cart
     },
     props: {
+        category: '',
         menu: Array
     },
     created() {
         this.$store.dispatch("fetchMenu", this.menu);
+    },
+    computed: {
+        filterProductsByCategory: function(){
+            let result = this.menu
+            if (!this.category)
+                return result
+
+            const filterValue = this.category.toLowerCase()
+
+            const filter = category =>
+
+                category.name.toLowerCase().includes(filterValue) ||
+                category.dishes.some(dish => dish.number.toLowerCase() === filterValue)
+
+            return result.filter(filter)
+        }
     },
     methods: {
         addToCart(categoryId, dishNumber){
