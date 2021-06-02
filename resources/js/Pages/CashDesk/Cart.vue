@@ -19,6 +19,7 @@
                 </button>
             </div>
         </div>
+        <textarea v-model="product.notes" placeholder="add multiple lines"></textarea>
         <hr/>
     </div>
 </template>

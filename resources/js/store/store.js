@@ -51,6 +51,7 @@ export const store = createStore({
                     ...product,
                     stock: product.quantity,
                     quantity: 1,
+                    notes: '',
                 });
             }
             //reduce the quantity in products list by 1
