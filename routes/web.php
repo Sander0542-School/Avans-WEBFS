@@ -36,6 +36,7 @@ Route::name('home.')->group(function () {
 
 Route::prefix('order')->name('order.')->group(function () {
     Route::get('', [OrderController::class, 'index'])->name('index');
+    Route::get('{category}', [OrderController::class, 'show'])->name('show');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {

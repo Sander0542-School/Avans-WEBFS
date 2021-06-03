@@ -68,7 +68,7 @@
                 <slot></slot>
                 <div class="content-footer">
                     <div class="languages text-center">
-                        <span class="c-pointer mx-2" v-for="locale in $i18n.availableLocales" @click="changeLocale(locale)">{{ $t(`locale.${locale}`) }}</span>
+                        <span class="c-pointer mx-2" v-for="locale in $i18n.availableLocales" :key="locale" @click="changeLocale(locale)">{{ $t(`locale.${locale}`) }}</span>
                     </div>
                 </div>
             </div>
