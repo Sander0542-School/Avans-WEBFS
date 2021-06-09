@@ -65,7 +65,7 @@
                     </div>
                     <img class="content-dragon float-right d-none d-md-block transform-vert" src="/pictures/dragon-small.png" alt="GoudenDraak"/>
                 </div>
-                <slot></slot>
+                <slot/>
                 <div class="content-footer">
                     <div class="languages text-center">
                         <span class="c-pointer mx-2" v-for="locale in $i18n.availableLocales" :key="locale" @click="changeLocale(locale)">{{ $t(`locale.${locale}`) }}</span>
