@@ -99,7 +99,7 @@ export const store = createStore({
         removeFromCart: ({ commit }, {categoryId, dishNumber}) => {
             store.commit("removeFromCart", {categoryId, dishNumber});
         },
-        removeAllFromCart: ({ commit }, productId) => {
+        removeAllFromCart: ({ commit }) => {
             store.commit("removeAllFromCart");
         },
         deleteFromCart: ({ commit }, {categoryId, dishNumber}) => {
