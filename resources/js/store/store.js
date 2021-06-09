@@ -1,7 +1,7 @@
-import { createStore } from 'vuex'
+import {createStore} from 'vuex'
 
 export const store = createStore({
-    state () {
+    state() {
         return {
             categories: null,
             tables: null,
@@ -27,12 +27,10 @@ export const store = createStore({
             //sets the state's  products property to the products array recieved as payload
             state.products = productsPayload;
         },
-
         setUpMenu: (state, menuPayload) => {
             //sets the state's  products property to the products array recieved as payload
             state.menu = menuPayload;
         },
-
         addToCart: (state, {categoryId, dishNumber}) => {
             //find the product in the products list
             let category = state.menu.find((category) => category.id === categoryId);
@@ -67,7 +65,7 @@ export const store = createStore({
         },
         removeAllFromCart: (state) => {
             //Remove all from cart state
-            state.cart= [];
+            state.cart = [];
         },
         deleteFromCart: (state, {categoryId, dishNumber}) => {
             //find the product in the products list
@@ -82,27 +80,25 @@ export const store = createStore({
 
     },
     actions: {
-        fetchMenu: ( commit, menu) => {
+        fetchMenu: (commit, menu) => {
             store.commit("setUpMenu", menu);
         },
-
-        addToCart: ({ commit }, {categoryId, dishNumber}) => {
+        addToCart: ({commit}, {categoryId, dishNumber}) => {
             store.commit("addToCart", {categoryId, dishNumber});
         },
-
-        increaseCartQuantity: ({ commit }, productId) => {
+        increaseCartQuantity: ({commit}, productId) => {
             store.commit("increaseCartQuantity", productId);
         },
-        decreaseCartQuantity: ({ commit }, productId) => {
+        decreaseCartQuantity: ({commit}, productId) => {
             store.commit("decreaseCartQuantity", productId);
         },
-        removeFromCart: ({ commit }, {categoryId, dishNumber}) => {
+        removeFromCart: ({commit}, {categoryId, dishNumber}) => {
             store.commit("removeFromCart", {categoryId, dishNumber});
         },
-        removeAllFromCart: ({ commit }) => {
+        removeAllFromCart: ({commit}) => {
             store.commit("removeAllFromCart");
         },
-        deleteFromCart: ({ commit }, {categoryId, dishNumber}) => {
+        deleteFromCart: ({commit}, {categoryId, dishNumber}) => {
             store.commit("deleteFromCart", {categoryId, dishNumber});
         }
     }

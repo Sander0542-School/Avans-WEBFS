@@ -43,7 +43,7 @@ Route::name('cashdesk.')->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('dashb       oard', function () {
+    Route::get('dashboard', function () {
         return Inertia::render('Dashboard');
     });
 });
