@@ -19,9 +19,4 @@ class CashDeskController extends Controller
             'menu' => MenuCategory::with('dishes')->get(),
         ]);
     }
-
-    public function contact()
-    {
-        return Inertia::render('CashDesk/Cart');
-    }
 }
