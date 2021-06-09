@@ -4,10 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Dish extends Model
 {
     use HasFactory;
+    use SoftDeletes;
+
+    protected $fillable = [
+        'category_id',
+        'number',
+        'addition',
+        'name',
+        'description',
+        'price',
+        'btw',
+        'spiciness_level',
+    ];
 
     public function allergies()
     {
