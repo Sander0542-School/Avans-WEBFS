@@ -1,7 +1,7 @@
 <template>
     <inertia-head :title="$t('pages.order')"/>
 
-    <home-layout>
+    <order-layout>
         <div class="row">
             <div v-for="category in menu" :key="category.id" class="col-6 col-md-4 col-lg-3 col-xl-2 my-3">
                 <div class="card order-card c-pointer" @click="selectCategory(category.id)">
@@ -11,15 +11,15 @@
                 </div>
             </div>
         </div>
-    </home-layout>
+    </order-layout>
 </template>
 
 <script>
-import HomeLayout from '@/Layouts/HomeLayout';
+import OrderLayout from '@/Layouts/OrderLayout';
 
 export default {
     components: {
-        HomeLayout
+        OrderLayout
     },
     props: {
         menu: Array
