@@ -8,12 +8,12 @@
 
             <div>
                 <button
-                    @click="  product.quantity == 1 ?  deleteFromCart(product.id) : removeFromCart(product.id)"
+                    @click="  product.quantity == 1 ?  deleteFromCart(product.id) : removeFromCart(product.category_id, product.number)"
                     class="btn btn-danger btn-sm" style="width: 25px;">
                     -
                 </button>
                 <button
-                    @click="addToCart(product.id)"
+                    @click="addToCart(product.category_id, product.number)"
                     class="btn btn-success btn-sm" style="width: 25px;">
                     +
                 </button>
@@ -22,6 +22,7 @@
         <textarea v-model="product.notes" placeholder="add multiple lines"></textarea>
         <hr/>
     </div>
+    <div>€{{ cartTotalAmount.toFixed(2)}}</div>
 </template>
 
 <script>
@@ -39,6 +40,17 @@ export default {
             "selectedTable",
         ]),
     },
+    methods: {
+        addToCart(categoryId, dishNumber){
+            this.$store.dispatch("addToCart", {categoryId, dishNumber});
+        },
+        removeFromCart(categoryId, dishNumber){
+            this.$store.dispatch("removeFromCart", {categoryId, dishNumber});
+        },
+        deleteFromCart(categoryId, dishNumber){
+            this.$store.dispatch("deleteFromCart", {categoryId, dishNumber});
+        }
+    }
 }
 </script>
 

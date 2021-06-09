@@ -23,7 +23,6 @@ export const store = createStore({
         },
     },
     mutations: {
-
         setUpProducts: (state, productsPayload) => {
             //sets the state's  products property to the products array recieved as payload
             state.products = productsPayload;
@@ -54,31 +53,30 @@ export const store = createStore({
                     notes: '',
                 });
             }
-            //reduce the quantity in products list by 1
-            product.quantity--;
         },
-        removeFromCart: (state, productId) => {
+        removeFromCart: (state, {categoryId, dishNumber}) => {
+            // debugger;
             //find the product in the products list
-            let product = state.products.find((product) => product.id === productId);
+            let category = state.menu.find((category) => category.id === categoryId);
+            // console.log(category);
+            let product = category.dishes.find((dish) => dish.number === dishNumber)
             //find the product in the cart list
-            let cartProduct = state.cart.find((product) => product.id === productId);
+            let cartProduct = state.cart.find((product) => product.number === dishNumber);
 
             cartProduct.quantity--;
-            //Add back the quantity in products list by 1
-            product.quantity++;
         },
         removeAllFromCart: (state) => {
             //Remove all from cart state
             state.cart= [];
         },
-        deleteFromCart: (state, productId) => {
+        deleteFromCart: (state, {categoryId, dishNumber}) => {
             //find the product in the products list
-            let product = state.products.find((product) => product.id === productId);
-            //find the product index in the cart list
-            let cartProductIndex = state.cart.findIndex((product) => product.id === productId);
-            //srt back the quantity of the product to intial quantity
-            // product.quantity = state.cart[cartProductIndex].stock;
-            // remove the product from the cart
+            let category = state.menu.find((category) => category.id === categoryId);
+            // console.log(category);
+            let product = category.dishes.find((dish) => dish.number === dishNumber)
+            //find the product in the cart list
+            let cartProductIndex = state.cart.findIndex((product) => product.number === dishNumber);
+
             state.cart.splice(cartProductIndex, 1);
         },
 
@@ -92,14 +90,20 @@ export const store = createStore({
             store.commit("addToCart", {categoryId, dishNumber});
         },
 
-        removeFromCart: ({ commit }, productId) => {
-            store.commit("removeFromCart", productId);
+        increaseCartQuantity: ({ commit }, productId) => {
+            store.commit("increaseCartQuantity", productId);
+        },
+        decreaseCartQuantity: ({ commit }, productId) => {
+            store.commit("decreaseCartQuantity", productId);
+        },
+        removeFromCart: ({ commit }, {categoryId, dishNumber}) => {
+            store.commit("removeFromCart", {categoryId, dishNumber});
         },
         removeAllFromCart: ({ commit }, productId) => {
             store.commit("removeAllFromCart");
         },
-        deleteFromCart: ({ commit }, productId) => {
-            store.commit("deleteFromCart", productId);
+        deleteFromCart: ({ commit }, {categoryId, dishNumber}) => {
+            store.commit("deleteFromCart", {categoryId, dishNumber});
         }
     }
 });
