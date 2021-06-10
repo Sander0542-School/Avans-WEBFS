@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,10 @@ Route::name('home.')->group(function () {
     Route::get('news', [HomeController::class, 'news'])->name('news');
     Route::get('contact', [HomeController::class, 'contact'])->name('contact');
     Route::get('discounts', [HomeController::class, 'discounts'])->name('discounts');
+});
+
+Route::prefix('download')->name('download.')->group(function () {
+    Route::get('menu', [DownloadController::class, 'menu'])->name('menu');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
