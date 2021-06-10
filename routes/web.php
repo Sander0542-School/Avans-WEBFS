@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Manager\MenuCategoryController;
+use App\Http\Controllers\Manager\MenuCategoryDishController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -39,7 +41,12 @@ Route::prefix('download')->name('download.')->group(function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('dashvoard', function () {
-        return Inertia::render('Dashboard');
+    Route::prefix('manager')->name('manager.')->group(function () {
+        Route::resource('menus', MenuCategoryController::class)->except(['show']);
+        Route::resource('menus.dishes', MenuCategoryDishController::class)->except(['index']);
     });
+
+    Route::get('dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 });
