@@ -44,7 +44,7 @@ namespace App\Models{
  * @property string $price
  * @property int $btw
  * @property int|null $spiciness_level
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Allergy[] $allergies
@@ -53,6 +53,7 @@ namespace App\Models{
  * @property-read mixed $price_inc
  * @method static \Illuminate\Database\Eloquent\Builder|Dish newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Dish newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Dish onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Dish query()
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereAddition($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereBtw($value)
@@ -66,6 +67,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Dish wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereSpicinessLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Dish withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Dish withoutTrashed()
  */
 	class Dish extends \Eloquent {}
 }
@@ -74,9 +77,13 @@ namespace App\Models{
 /**
  * App\Models\DishAllergy
  *
+ * @property int $dish_id
+ * @property int $allergy_id
  * @method static \Illuminate\Database\Eloquent\Builder|DishAllergy newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DishAllergy newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|DishAllergy query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DishAllergy whereAllergyId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DishAllergy whereDishId($value)
  */
 	class DishAllergy extends \Eloquent {}
 }
@@ -106,7 +113,7 @@ namespace App\Models{
  *
  * @property int $id
  * @property string $name
- * @property int $extra_option
+ * @property bool $extra_option
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Dish[] $dishes
