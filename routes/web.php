@@ -42,12 +42,13 @@ Route::prefix('download')->name('download.')->group(function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('manager')->name('manager.')->group(function () {
-        Route::resource('menus', MenuCategoryController::class)->except(['show']);
-        Route::resource('menus.dishes', MenuCategoryDishController::class)->except(['index']);
-        Route::put('menu/{menu}/dishes/{dish}/restore', [MenuCategoryDishController::class, 'restore'])->name('menus.dishes.restore');
+        Route::resource('menus', MenuCategoryController::class)->except(['edit']);
+        Route::resource('menus.dishes', MenuCategoryDishController::class)->except(['index', 'show']);
+        Route::put('menus/{menu}/dishes/{dish}/restore', [MenuCategoryDishController::class, 'restore'])->name('menus.dishes.restore');
     });
 
     Route::get('dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
