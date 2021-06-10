@@ -3,29 +3,69 @@
     <title>GoudenDraak Menu</title>
 
     <style>
-        .fas {
-            margin-left: 2px;
+        body {
+            margin: 0;
+            padding: 16px;
+
+            background-color: fefebe;
+        }
+
+        @page {
+            margin: 0;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        .page {
+            page-break-before: always;
+        }
+
+        .page:first-child {
+            page-break-before: never;
+        }
+
+        td.fit {
+            width: 1px;
+            white-space: nowrap;
         }
     </style>
 </head>
 <body>
 <h1>GoudenDraak</h1>
-<h2>Menu</h2>
-@foreach($menu as $category)
-    <h3>{{ $category['name'] }}</h3>
-    @foreach($category['dishes'] as $dish)
-        <div>
-            <div>
-                <span>{{ $dish['number'] }}{{ $dish['addition'] ?? '' }}. {{ $dish['name'] }}</span>
-                <span>&euro; {{ number_format($dish['price'], 2) }}</span>
-            </div>
-            @if($dish['description'])
-                <span style="font-style: italic">({{ $dish['description'] }})</span>
+<div class="page menu">
+    <h2>Menu</h2>
+    <table>
+        @foreach($menu as $id => $category)
+            @if(count($category['dishes']) > 0)
+                <tr>
+                    <th colspan="3">
+                        <h3>{{ $category['name'] }}</h3>
+                    </th>
+                </tr>
+                @foreach($category['dishes'] as $dish)
+                    <tr>
+                        <td class="fit">{{ $dish['number'] }}{{ $dish['addition'] ?? '' }}.</td>
+                        <td>{{ $dish['name'] }}</td>
+                        <td class="fit">&euro; {{ number_format($dish['price'], 2) }}</td>
+                    </tr>
+                    @if($dish['description'])
+                        <tr>
+                            <td></td>
+                            <td colspan="2">
+                                <span style="font-style: italic">({{ $dish['description'] }})</span>
+                            </td>
+                        </tr>
+                    @endif
+                @endforeach
             @endif
-        </div>
-    @endforeach
-@endforeach
+        @endforeach
+    </table>
+</div>
 
-<h2>Aanbiedingen</h2>
+<div class="page discounts">
+    <h2>Aanbiedingen</h2>
+</div>
 </body>
 </html>
