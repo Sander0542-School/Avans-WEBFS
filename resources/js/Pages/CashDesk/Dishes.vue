@@ -1,18 +1,19 @@
 <template>
-
-
+<!--    <app-layout>-->
     <div class="row p-3">
         <div class="col-sm-8 ">
-
             <div class="card p-3 pb-2">
-                <select v-model="filterCategory">
+                <select class="form-control" v-model="filterCategory">
                     <option value="all">All</option>
-                    <option value="SOEP">SOEP</option>
+                    <option v-for="category in categories" v-bind:value="category">
+                        {{ category }}
+                    </option>
                 </select>
                 <input type="text" class="form-control pb-1" v-model="filterName" placeholder="Filter By Name"/>
                 <div class="">
                     <div v-for="category in filterProducts" class="menu">
                         <div v-if="category.dishes.length > 0">
+
                             <h5>{{ category.name }}</h5>
                             <div v-for="dish in category.dishes">
                                 <div class="menu-item mb-2">
@@ -38,25 +39,38 @@
         </div>
     </div>
 
-
+<!--    </app-layout>-->
 </template>
 
 <script>
 import Cart from './/Cart';
+import AppLayout from '@/Layouts/AppLayout'
 
 export default {
     name: "Dishes",
     components: {
-        Cart
+        Cart,
+        AppLayout
+    },
+    data: function () {
+        return {
+            categories: [],
+            filterCategory: '',
+        }
     },
     props: {
         filteredMenu: Array,
-        filterCategory: '',
         filterName: '',
-        menu: Array
+        menu: Array,
+
     },
     created() {
         this.$store.dispatch("fetchMenu", this.menu);
+
+
+    },
+    mounted() {
+        this.categories =  this.menu.map(function (el) { return el.name; });
 
     },
     computed: {
@@ -64,10 +78,16 @@ export default {
 
             let result = JSON.parse(JSON.stringify(this.menu));
 
-            if (!this.filterName || this.filterName === ''){
+            if (!this.filterName || this.filterName === '' ){
+                if (this.filterCategory !== "All" && this.filterCategory !== ''){
+                    result = result.filter((p) => {
+                        return p.name === this.filterCategory;
+                    })
+                }
                 return result;
             }
             else{
+
                 result = result
                     .map((category) => {
                         category.dishes = category.dishes.filter((dish) => dish.name.match(this.filterName));
