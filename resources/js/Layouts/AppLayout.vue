@@ -22,6 +22,10 @@
             <jet-nav-link :href="route('manager.menus.index')" :active="route().current().startsWith('manager.menus.')">
               Menu
             </jet-nav-link>
+
+            <jet-nav-link :href="route('manager.sales.index')" :active="route().current().startsWith('manager.sales.')">
+              Verkoop
+            </jet-nav-link>
           </ul>
 
           <!-- Right Side Of Navbar -->
