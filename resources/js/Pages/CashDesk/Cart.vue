@@ -1,12 +1,12 @@
 <template>
-    <div class="sticky-top">
+    <div class="">
         <div class="card p-3 ">
             <div v-for="(product, index) in cart" :key="product.id">
                 <div class="d-flex justify-content-between">
-                    <h4 class="font-bold mb-6">{{ product.number }}</h4>
-                    <h4 class="font-bold mb-6">{{ product.name }}</h4>
-                    <h4>€{{ (product.quantity * Math.round(product.price * 100) / 100).toFixed(2) }}</h4>
-                    <h4 class="font-bold mb-6">{{ product.quantity }}</h4>
+                    <h5 class="font-bold mb-6">{{ product.number }}</h5>
+                    <h5 class="font-bold mb-6">{{ product.name }}</h5>
+                    <h5>€{{ (product.quantity * product.price).toFixed(2) }}</h5>
+                    <h5 class="font-bold mb-6">{{ product.quantity }}</h5>
 
                     <div>
                         <button
@@ -31,11 +31,11 @@
                 </dl>
                 <div class="row">
                     <div class="col-md-6">
-                        <a @click="removeAllFromCart()" href="#" class="btn  btn btn-light btn-lg btn-block"><i
+                        <a @click="removeAllFromCart()" href="#" class="btn btn-light  btn-block"><i
                             class="fa fa-times-circle "></i> Verwijderen </a>
                     </div>
                     <div class="col-md-6">
-                        <a href="#" class="btn  btn-primary btn-lg btn-block"><i class="fa fa-shopping-bag"></i>
+                        <a @click="removeAllFromCart()" href="#" class="btn  btn-primary  btn-block"><i class="fa fa-shopping-bag"></i>
                             Afrekenen </a>
                     </div>
                 </div>

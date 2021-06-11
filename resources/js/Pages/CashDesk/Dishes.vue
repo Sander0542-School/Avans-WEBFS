@@ -2,7 +2,7 @@
     <app-layout>
     <div class="row p-3">
         <div class="col-sm-7 ">
-            <div class="card p-3 pb-2">
+            <div class="card p-3 pb-2 overflow-auto vh-100">
                 <select class="form-control mb-1" v-model="filterCategory">
                     <option selected value="all">All</option>
                     <option v-for="category in categories" v-bind:value="category">
@@ -20,13 +20,12 @@
                                     <span>{{ dish.number }}</span>
                                     <span v-if="dish.addition">{{ dish.addition }}</span>
                                     <span>. {{ dish.name }}</span>
-                                    <span class="dotted"></span>
+                                    <span class="dotted text-black-50"></span>
                                     <span>&euro; {{ dish.price }}</span>
                                     <button type="button" class="btn btn-primary ml-1 btn-sm"
-                                            @click="addToCart(category.id, dish.number)">Toevoegen
+                                            @click="addToCart(category.id, dish.number)"><i class="fas fa-shopping-cart"></i>
                                     </button>
                                 </div>
-                                <span v-if="dish.description" class="font-italic small">({{ dish.description }})</span>
                             </div>
                             <br/>
                         </div>
