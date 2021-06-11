@@ -61,68 +61,27 @@ export default {
     },
     computed: {
         filterProducts: function () {
-        //     // let result = this.menu
-        //     // // if (!this.filterCategory)
-        //     // //     return result
-        //     //
-        //     // if (this.filterCategory && this.filterName !== 'all') {
-        //     //     result = result.filter((p) => {
-        //     //         return p.name.indexOf(this.filterCategory) !== -1
-        //     //     })
-        //     // }
-        //     //
-        //     // if(this.filterName) {
-        //     //     result = result.filter((p) => {
-        //     //
-        //     //         let foundproducts = p.dishes.findIndex((c) => {
-        //     //             // debugger;
-        //     //             return c.name.indexOf(this.filterName)
-        //     //         })
-        //     //         return foundproducts
-        //     //     })
-        //     // }
-        //     //
-        //     // return result
-        //     //
-        //     // // const filterValue = this.category.toLowerCase()
-        //     // //
-        //     // // const filter = category =>
-        //     // //     category.name.toLowerCase().includes(filterValue)
-        //     // //
-        //     // // const filterProduct = category =>
-        //     // //     category.dishes.some(dish => dish.name.toLowerCase() === filterValue)
-        //     // //
-        //     // // return result.filter(filter)
-            let result = this.menu
-            if (!this.filterName || this.filterName === ''){
-                // console.log(this.menu);
-                return result
-            }
-            else{
 
-                result = result
-                    // Return a modified copy of engagements..
-                    .map((category) => {
-                        // ..with all answered questions filtered out..
-                        category.dishes = category.dishes.filter((dish) => !dish.name.indexOf(this.filterName));
-                        console.log(category)
-                        return category;
-                    })
-                    // // ..and only return engagements that have (unanswered) questions left
-                    // .filter((category) => category.dishes.length !== 0);
-// debugger;
+            let result = JSON.parse(JSON.stringify(this.menu));
+
+            if (!this.filterName || this.filterName === ''){
                 return result;
             }
+            else{
+                result = result
+                    .map((category) => {
+                        category.dishes = category.dishes.filter((dish) => dish.name.match(this.filterName));
+                        return category;
+                    })
+                return result;
 
+            }
         }
-
-
-
     },
     methods: {
         addToCart(categoryId, dishNumber) {
             this.$store.dispatch("addToCart", {categoryId, dishNumber});
         }
-    }
+    },
 }
 </script>
