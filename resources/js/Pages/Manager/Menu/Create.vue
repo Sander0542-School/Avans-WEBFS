@@ -1,9 +1,14 @@
 <template>
     <app-layout>
         <template #header>
-            <h2 class="h4 m-0 font-weight-bold">
-                Menu
-            </h2>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <inertia-link :href="route('manager.menus.index')">Menu</inertia-link>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">Aanmaken</li>
+                </ol>
+            </nav>
         </template>
 
         <div class="card">
