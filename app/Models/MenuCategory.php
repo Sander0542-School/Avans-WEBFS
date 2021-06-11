@@ -25,7 +25,7 @@ class MenuCategory extends Model
 
     public static function menuData()
     {
-        return self::all()->map(function (MenuCategory $category) {
+        return self::with('dishes')->get()->map(function (MenuCategory $category) {
             return [
                 'name' => $category->name,
                 'extra_option' => $category->extra_option,

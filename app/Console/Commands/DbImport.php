@@ -86,8 +86,8 @@ class DbImport extends Command
                 'category_id' => MenuCategory::firstWhere('name', $this->convertCategory($dish->soortgerecht))->id,
                 'number' => $dish->menunummer ?? $dish->menu_toevoeging,
                 'addition' => $dish->menunummer == null ? null : $dish->menu_toevoeging,
-                'name' => $dish->naam,
-                'description' => $dish->beschrijving ?? '',
+                'name' => html_entity_decode($dish->naam),
+                'description' => html_entity_decode($dish->beschrijving ?? ''),
                 'price' => round(($dish->price / (100 + self::BTW)) * 100, 2),
                 'btw' => self::BTW,
             ]);

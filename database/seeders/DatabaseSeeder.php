@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,7 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@goudendraak.tk',
+            'email_verified_at' => now(),
+            'password' => \Hash::make('password')
+        ]);
+
         $this->call(AllergySeeder::class);
-        // \App\Models\User::factory(10)->create();
     }
 }
