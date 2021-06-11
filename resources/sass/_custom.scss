@@ -144,3 +144,20 @@
 .c-pointer {
     cursor: pointer
 }
+
+.table.table-card {
+    margin: 0;
+
+    th {
+        border: none;
+    }
+
+    th, td {
+        vertical-align: middle;
+    }
+}
+
+.table td .btn {
+    margin-left: 2px;
+    margin-right: 2px;
+}

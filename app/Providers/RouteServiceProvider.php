@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Dish;
+use App\Models\MenuCategory;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -35,6 +37,16 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Route::model('menu', MenuCategory::class);
+
+        Route::bind('dish', function($dish, \Illuminate\Routing\Route $route) {
+            if ($route->hasParameter('menu')) {
+                return $route->parameter('menu')->dishes()->withTrashed()->findOrFail($dish);
+            }
+
+            return Dish::withTrashed()->findOrFail($dish);
+        });
+
         $this->configureRateLimiting();
 
         $this->routes(function () {

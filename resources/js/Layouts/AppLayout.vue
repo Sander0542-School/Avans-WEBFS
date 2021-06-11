@@ -18,6 +18,10 @@
             <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
               Dashboard
             </jet-nav-link>
+
+            <jet-nav-link :href="route('manager.menus.index')" :active="route().current().startsWith('manager.menus.')">
+              Menu
+            </jet-nav-link>
           </ul>
 
           <!-- Right Side Of Navbar -->

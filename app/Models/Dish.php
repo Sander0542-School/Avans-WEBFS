@@ -22,6 +22,16 @@ class Dish extends Model
         'spiciness_level',
     ];
 
+    public function resolveRouteBinding($value, $field = null)
+    {
+        return $this->where($field ?? 'id', $value)->withTrashed()->firstOrFail();
+    }
+
+    public function dish_allergies()
+    {
+        return $this->hasMany(DishAllergy::class, 'dish_id', 'id');
+    }
+
     public function allergies()
     {
         return $this->hasManyThrough(Allergy::class, DishAllergy::class, 'dish_id', 'id', 'id', 'allergy_id');
