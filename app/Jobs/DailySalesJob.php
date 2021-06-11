@@ -32,9 +32,9 @@ class DailySalesJob implements ShouldQueue
     public function handle()
     {
         $yesterday = Carbon::yesterday(); //Yesterday because jobs runs at 00:15
-        $filePath = 'Sales/Orders_'.$yesterday->format('Y_m_d').'.xlsx';
+        $filePath = 'sales/Orders_'.$yesterday->format('Y_m_d').'.xlsx';
 
         $export = new OrdersExport($yesterday);
-        $export->store($filePath, 'public');
+        $export->store($filePath);
     }
 }
