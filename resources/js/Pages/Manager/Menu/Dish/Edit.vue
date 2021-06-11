@@ -169,8 +169,7 @@ export default {
     methods: {
         update() {
             this.form.put(this.route('manager.menus.dishes.update', [this.category.id, this.dish.id]), {
-                preserveScroll: true,
-                only: ['category', 'dish']
+                preserveScroll: true
             })
         }
     }
