@@ -1,15 +1,15 @@
 <template>
-<!--    <app-layout>-->
+    <app-layout>
     <div class="row p-3">
-        <div class="col-sm-8 ">
+        <div class="col-sm-7 ">
             <div class="card p-3 pb-2">
-                <select class="form-control" v-model="filterCategory">
-                    <option value="all">All</option>
+                <select class="form-control mb-1" v-model="filterCategory">
+                    <option selected value="all">All</option>
                     <option v-for="category in categories" v-bind:value="category">
                         {{ category }}
                     </option>
                 </select>
-                <input type="text" class="form-control pb-1" v-model="filterName" placeholder="Filter By Name"/>
+                <input type="text" class="form-control mb-1" v-model="filterName" placeholder="Filter By Name"/>
                 <div class="">
                     <div v-for="category in filterProducts" class="menu">
                         <div v-if="category.dishes.length > 0">
@@ -34,12 +34,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4 ">
+        <div class="col-sm-5 ">
             <cart></cart>
         </div>
     </div>
 
-<!--    </app-layout>-->
+    </app-layout>
 </template>
 
 <script>
@@ -55,7 +55,7 @@ export default {
     data: function () {
         return {
             categories: [],
-            filterCategory: '',
+            filterCategory: 'all',
         }
     },
     props: {
@@ -79,7 +79,7 @@ export default {
             let result = JSON.parse(JSON.stringify(this.menu));
 
             if (!this.filterName || this.filterName === '' ){
-                if (this.filterCategory !== "All" && this.filterCategory !== ''){
+                if (this.filterCategory !== "all" && this.filterCategory !== ''){
                     result = result.filter((p) => {
                         return p.name === this.filterCategory;
                     })
@@ -90,9 +90,10 @@ export default {
 
                 result = result
                     .map((category) => {
-                        category.dishes = category.dishes.filter((dish) => dish.name.match(this.filterName));
+                        category.dishes = category.dishes.filter((dish) => dish.number === this.filterName || dish.name.match(this.filterName));
                         return category;
                     })
+
                 return result;
 
             }
