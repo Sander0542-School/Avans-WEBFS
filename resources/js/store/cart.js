@@ -1,6 +1,6 @@
 import {createStore} from 'vuex'
 
-export const store = createStore({
+export const cart = createStore({
     state() {
         return {
             categories: null,
@@ -81,25 +81,25 @@ export const store = createStore({
     },
     actions: {
         fetchMenu: (commit, menu) => {
-            store.commit("setUpMenu", menu);
+            cart.commit("setUpMenu", menu);
         },
         addToCart: ({commit}, {categoryId, dishNumber}) => {
-            store.commit("addToCart", {categoryId, dishNumber});
+            cart.commit("addToCart", {categoryId, dishNumber});
         },
         increaseCartQuantity: ({commit}, productId) => {
-            store.commit("increaseCartQuantity", productId);
+            cart.commit("increaseCartQuantity", productId);
         },
         decreaseCartQuantity: ({commit}, productId) => {
-            store.commit("decreaseCartQuantity", productId);
+            cart.commit("decreaseCartQuantity", productId);
         },
         removeFromCart: ({commit}, {categoryId, dishNumber}) => {
-            store.commit("removeFromCart", {categoryId, dishNumber});
+            cart.commit("removeFromCart", {categoryId, dishNumber});
         },
         removeAllFromCart: ({commit}) => {
-            store.commit("removeAllFromCart");
+            cart.commit("removeAllFromCart");
         },
         deleteFromCart: ({commit}, {categoryId, dishNumber}) => {
-            store.commit("deleteFromCart", {categoryId, dishNumber});
+            cart.commit("deleteFromCart", {categoryId, dishNumber});
         }
     }
 });
