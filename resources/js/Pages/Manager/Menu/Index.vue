@@ -53,7 +53,6 @@ export default {
             if (confirm(`Weet je zeker dat je "${category.name}" wil verwijderen?`)) {
                 this.$inertia.delete(this.route('manager.menus.destroy', category.id), {
                     preserveScroll: true,
-                    only: ['categories']
                 })
             }
         }

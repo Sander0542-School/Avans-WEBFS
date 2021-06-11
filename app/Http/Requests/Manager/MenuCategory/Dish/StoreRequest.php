@@ -4,7 +4,6 @@ namespace App\Http\Requests\Manager\MenuCategory\Dish;
 
 use App\Models\Allergy;
 use App\Models\Dish;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -32,9 +31,7 @@ class StoreRequest extends FormRequest
                 'required',
                 'string',
                 'max:4',
-                Rule::unique(Dish::class)->where(function (Builder $query) {
-                    return $query->where('number', $this->get('number'))->where('addition', $this->get('addition'));
-                }),
+                Rule::unique(Dish::class, 'number')->where('addition', $this->get('addition')),
             ],
             'addition' => [
                 'nullable',

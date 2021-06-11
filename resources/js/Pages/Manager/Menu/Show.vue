@@ -120,14 +120,12 @@ export default {
         updateCategory() {
             this.form.put(this.route('manager.menus.update', this.category.id), {
                 preserveScroll: true,
-                only: ['category']
             })
         },
         deleteDish(dish) {
             if (confirm(`Weet je zeker dat je "${dish.name}" wil verwijderen?`)) {
                 this.$inertia.delete(this.route('manager.menus.dishes.destroy', [this.category.id, dish.id]), {
                     preserveScroll: true,
-                    only: ['category']
                 });
             }
         },
@@ -135,7 +133,6 @@ export default {
             if (confirm(`Weet je zeker dat je "${dish.name}" terug wil zetten?`)) {
                 this.$inertia.put(this.route('manager.menus.dishes.restore', [this.category.id, dish.id]), {}, {
                     preserveScroll: true,
-                    only: ['category']
                 });
             }
         }
