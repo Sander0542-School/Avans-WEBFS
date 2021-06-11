@@ -53,7 +53,6 @@ export const cart = createStore({
             }
         },
         removeFromCart: (state, {categoryId, dishNumber}) => {
-            // debugger;
             //find the product in the products list
             let category = state.menu.find((category) => category.id === categoryId);
             // console.log(category);
