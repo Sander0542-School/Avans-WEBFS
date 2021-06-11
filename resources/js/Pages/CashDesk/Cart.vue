@@ -21,7 +21,7 @@
                         </button>
                     </div>
                 </div>
-                <!--        <textarea v-model="product.notes" placeholder="add multiple lines"></textarea>-->
+                <textarea class="form-control" v-model="product.notes" placeholder="Beschrijving toevoegen"></textarea>
                 <hr/>
             </div>
             <div class="box">
@@ -76,7 +76,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

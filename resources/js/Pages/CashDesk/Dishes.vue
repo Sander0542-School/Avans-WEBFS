@@ -1,11 +1,17 @@
 <template>
 
-    <!--    <input type="text" v-model="category" placeholder="Filter By Name"/>-->
+
     <div class="row p-3">
         <div class="col-sm-8 ">
+
             <div class="card p-3 pb-2">
+                <select v-model="filterCategory">
+                    <option value="all">All</option>
+                    <option value="SOEP">SOEP</option>
+                </select>
+                <input type="text" class="form-control pb-1" v-model="filterName" placeholder="Filter By Name"/>
                 <div class="">
-                    <div v-for="category in filterProductsByCategory" class="menu">
+                    <div v-for="category in filterProducts" class="menu">
                         <div v-if="category.dishes.length > 0">
                             <h5>{{ category.name }}</h5>
                             <div v-for="dish in category.dishes">
@@ -44,27 +50,74 @@ export default {
         Cart
     },
     props: {
-        category: '',
+        filteredMenu: Array,
+        filterCategory: '',
+        filterName: '',
         menu: Array
     },
     created() {
         this.$store.dispatch("fetchMenu", this.menu);
+
     },
     computed: {
-        filterProductsByCategory: function () {
+        filterProducts: function () {
+        //     // let result = this.menu
+        //     // // if (!this.filterCategory)
+        //     // //     return result
+        //     //
+        //     // if (this.filterCategory && this.filterName !== 'all') {
+        //     //     result = result.filter((p) => {
+        //     //         return p.name.indexOf(this.filterCategory) !== -1
+        //     //     })
+        //     // }
+        //     //
+        //     // if(this.filterName) {
+        //     //     result = result.filter((p) => {
+        //     //
+        //     //         let foundproducts = p.dishes.findIndex((c) => {
+        //     //             // debugger;
+        //     //             return c.name.indexOf(this.filterName)
+        //     //         })
+        //     //         return foundproducts
+        //     //     })
+        //     // }
+        //     //
+        //     // return result
+        //     //
+        //     // // const filterValue = this.category.toLowerCase()
+        //     // //
+        //     // // const filter = category =>
+        //     // //     category.name.toLowerCase().includes(filterValue)
+        //     // //
+        //     // // const filterProduct = category =>
+        //     // //     category.dishes.some(dish => dish.name.toLowerCase() === filterValue)
+        //     // //
+        //     // // return result.filter(filter)
             let result = this.menu
-            if (!this.category)
+            if (!this.filterName || this.filterName === ''){
+                // console.log(this.menu);
                 return result
+            }
+            else{
 
-            const filterValue = this.category.toLowerCase()
+                result = result
+                    // Return a modified copy of engagements..
+                    .map((category) => {
+                        // ..with all answered questions filtered out..
+                        category.dishes = category.dishes.filter((dish) => !dish.name.indexOf(this.filterName));
+                        console.log(category)
+                        return category;
+                    })
+                    // // ..and only return engagements that have (unanswered) questions left
+                    // .filter((category) => category.dishes.length !== 0);
+// debugger;
+                return result;
+            }
 
-            const filter = category =>
-
-                category.name.toLowerCase().includes(filterValue) ||
-                category.dishes.some(dish => dish.number.toLowerCase() === filterValue)
-
-            return result.filter(filter)
         }
+
+
+
     },
     methods: {
         addToCart(categoryId, dishNumber) {
@@ -73,7 +126,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>
