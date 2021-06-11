@@ -10,25 +10,23 @@
                         </option>
                     </select>
                     <input type="text" class="form-control mb-1" v-model="filterName" placeholder="Filter By Name"/>
-                    <div class="">
-                        <div v-for="category in filterProducts" class="menu">
-                            <div v-if="category.dishes.length > 0">
-                                <h5>{{ category.name }}</h5>
-                                <div v-for="dish in category.dishes">
-                                    <div class="menu-item mb-2">
-                                        <span>{{ dish.number }}</span>
-                                        <span v-if="dish.addition">{{ dish.addition }}</span>
-                                        <span>. {{ dish.name }}</span>
-                                        <span class="dotted text-black-50"></span>
-                                        <span>&euro; {{ dish.price }}</span>
-                                        <button type="button" class="btn btn-primary ml-1 btn-sm"
-                                                @click="addToCart(category.id, dish.number)">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </button>
-                                    </div>
+                    <div v-for="category in filterProducts" class="menu">
+                        <div v-if="category.dishes.length > 0">
+                            <h5>{{ category.name }}</h5>
+                            <div v-for="dish in category.dishes">
+                                <div class="menu-item mb-2">
+                                    <span>{{ dish.number }}</span>
+                                    <span v-if="dish.addition">{{ dish.addition }}</span>
+                                    <span>. {{ dish.name }}</span>
+                                    <span class="dotted text-black-50"></span>
+                                    <span>&euro; {{ dish.price }}</span>
+                                    <button type="button" class="btn btn-primary ml-1 btn-sm"
+                                            @click="addToCart(category.id, dish.number)">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </button>
                                 </div>
-                                <br/>
                             </div>
+                            <br/>
                         </div>
                     </div>
                 </div>
