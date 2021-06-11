@@ -76,7 +76,6 @@ export const cart = createStore({
 
             state.cart.splice(cartProductIndex, 1);
         },
-
     },
     actions: {
         fetchMenu: (commit, menu) => {

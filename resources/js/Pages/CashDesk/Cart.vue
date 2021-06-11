@@ -5,12 +5,12 @@
                 <div class="d-flex justify-content-between">
                     <h5 class="font-bold mb-6">{{ product.number }}</h5>
                     <h5 class="font-bold mb-6">{{ product.name }}</h5>
-                    <h5>€{{ (product.quantity * product.price).toFixed(2) }}</h5>
+                    <h5>&euro;{{ (product.quantity * product.price).toFixed(2) }}</h5>
                     <h5 class="font-bold mb-6">{{ product.quantity }}</h5>
 
                     <div>
                         <button
-                            @click="  product.quantity == 1 ?  deleteFromCart(product.id) : removeFromCart(product.category_id, product.number)"
+                            @click="product.quantity == 1 ? deleteFromCart(product.id) : removeFromCart(product.category_id, product.number)"
                             class="btn btn-danger btn-sm" style="width: 25px;">
                             -
                         </button>
@@ -27,7 +27,7 @@
             <div class="box">
                 <dl class="dlist-align">
                     <dt>Totaal:</dt>
-                    <dd class="text-right h4 b"> €{{ cartTotalAmount.toFixed(2) }}</dd>
+                    <dd class="text-right h4 b"> &euro;{{ cartTotalAmount.toFixed(2) }}</dd>
                 </dl>
                 <div class="row">
                     <div class="col-md-6">
@@ -35,8 +35,7 @@
                             class="fa fa-times-circle "></i> Verwijderen </a>
                     </div>
                     <div class="col-md-6">
-                        <a @click="removeAllFromCart()" href="#" class="btn  btn-primary  btn-block"><i class="fa fa-shopping-bag"></i>
-                            Afrekenen </a>
+                        <a @click="removeAllFromCart()" href="#" class="btn  btn-primary  btn-block"><i class="fa fa-shopping-bag"></i> Afrekenen </a>
                     </div>
                 </div>
             </div>
@@ -48,7 +47,6 @@
 import {mapGetters, mapState} from 'vuex';
 
 export default {
-
     name: "Cart",
     computed: {
         ...mapState([
