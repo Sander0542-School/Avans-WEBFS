@@ -21,7 +21,7 @@
                         </button>
                     </div>
                 </div>
-                <textarea class="form-control" v-model="product.notes" placeholder="Beschrijving toevoegen"></textarea>
+<!--                <textarea class="form-control" v-model="product.notes" placeholder="Beschrijving toevoegen"></textarea>-->
                 <hr/>
             </div>
             <div class="box">
