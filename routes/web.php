@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CashDeskController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\MenuCategoryController;
@@ -47,8 +48,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::put('menus/{menu}/dishes/{dish}/restore', [MenuCategoryDishController::class, 'restore'])->name('menus.dishes.restore');
     });
 
+    Route::prefix('cashdesk')->name('cashdesk.')->group(function () {
+        Route::get('', [CashDeskController::class, 'index'])->name('index');
+        Route::get('dishes', [CashDeskController::class, 'dishes'])->name('dishes');
+    });
+
     Route::get('dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
-
