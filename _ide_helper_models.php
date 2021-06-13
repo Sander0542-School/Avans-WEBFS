@@ -50,6 +50,8 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Allergy[] $allergies
  * @property-read int|null $allergies_count
  * @property-read \App\Models\MenuCategory|null $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\DishAllergy[] $dish_allergies
+ * @property-read int|null $dish_allergies_count
  * @property-read mixed $price_inc
  * @method static \Illuminate\Database\Eloquent\Builder|Dish newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Dish newQuery()
@@ -139,6 +141,12 @@ namespace App\Models{
  * @property int|null $table_number
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Dish[] $dishes
+ * @property-read int|null $dishes_count
+ * @property-read mixed $price
+ * @property-read mixed $price_inc
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderDish[] $lines
+ * @property-read int|null $lines_count
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order query()
@@ -165,6 +173,7 @@ namespace App\Models{
  * @property int|null $rice_option_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Dish $dish
  * @property-read mixed $price
  * @property-read mixed $price_inc
  * @property-read mixed $unit_price_inc

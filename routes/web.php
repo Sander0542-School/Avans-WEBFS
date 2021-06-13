@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\CashDeskController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Manager\MenuCategoryController;
 use App\Http\Controllers\Manager\MenuCategoryDishController;
+use App\Http\Controllers\Manager\SalesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -51,10 +53,19 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::resource('menus', MenuCategoryController::class)->except(['edit']);
         Route::resource('menus.dishes', MenuCategoryDishController::class)->except(['index', 'show']);
         Route::put('menus/{menu}/dishes/{dish}/restore', [MenuCategoryDishController::class, 'restore'])->name('menus.dishes.restore');
+
+        Route::prefix('sales')->name('sales.')->group(function () {
+            Route::get('', [SalesController::class, 'index'])->name('index');
+            Route::get('download/{date}', [SalesController::class, 'download'])->name('download');
+        });
+    });
+
+    Route::prefix('cashdesk')->name('cashdesk.')->group(function () {
+        Route::get('', [CashDeskController::class, 'index'])->name('index');
+        Route::get('dishes', [CashDeskController::class, 'dishes'])->name('dishes');
     });
 
     Route::get('dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
-
