@@ -1,41 +1,36 @@
 <template>
     <div class="">
         <div class="card p-3 ">
-            <div v-for="(product, index) in cart" :key="product.id">
+            <div v-for="product in cart" :key="product.id">
                 <div class="d-flex justify-content-between">
-                    <h5 class="font-bold mb-6">{{ product.number }}</h5>
-                    <h5 class="font-bold mb-6">{{ product.name }}</h5>
-                    <h5>&euro;{{ (product.quantity * product.price).toFixed(2) }}</h5>
-                    <h5 class="font-bold mb-6">{{ product.quantity }}</h5>
+                    <h5 class="mb-6">{{ product.number }}</h5>
+                    <h5 class="mb-6">{{ product.name }}</h5>
+                    <h5>&euro;{{ (product.quantity * product.price_inc).toFixed(2) }}</h5>
+                    <h5 class="mb-6">{{ product.quantity }}</h5>
 
                     <div>
-                        <button
-                            @click="product.quantity == 1 ? deleteFromCart(product.id) : removeFromCart(product.category_id, product.number)"
-                            class="btn btn-danger btn-sm" style="width: 25px;">
+                        <button @click="product.quantity === 1 ? deleteFromCart(product.id) : removeFromCart(product.id)" class="btn btn-danger btn-sm" style="width: 25px;">
                             -
                         </button>
-                        <button
-                            @click="addToCart(product.category_id, product.number)"
-                            class="btn btn-success btn-sm ml-1" style="width: 25px;">
+                        <button @click="addToCart(product.id)" class="btn btn-success btn-sm ml-1" style="width: 25px;">
                             +
                         </button>
                     </div>
                 </div>
-<!--                <textarea class="form-control" v-model="product.notes" placeholder="Beschrijving toevoegen"></textarea>-->
+                <!--                <textarea class="form-control" v-model="product.notes" placeholder="Beschrijving toevoegen"></textarea>-->
                 <hr/>
             </div>
             <div class="box">
                 <dl class="dlist-align">
                     <dt>Totaal:</dt>
-                    <dd class="text-right h4 b"> &euro;{{ cartTotalAmount.toFixed(2) }}</dd>
+                    <dd class="text-right h4 b">&euro; {{ cartTotalAmountInc.toFixed(2) }}</dd>
                 </dl>
                 <div class="row">
                     <div class="col-md-6">
-                        <a @click="removeAllFromCart()" href="#" class="btn btn-light  btn-block"><i
-                            class="fa fa-times-circle "></i> Verwijderen </a>
+                        <a @click="removeAllFromCart()" href="#" class="btn btn-light btn-block"><i class="fa fa-times-circle "></i> Verwijderen</a>
                     </div>
                     <div class="col-md-6">
-                        <a @click="removeAllFromCart()" href="#" class="btn  btn-primary  btn-block"><i class="fa fa-shopping-bag"></i> Afrekenen </a>
+                        <a @click="removeAllFromCart()" href="#" class="btn btn-primary btn-block"><i class="fa fa-shopping-bag"></i> Afrekenen</a>
                     </div>
                 </div>
             </div>
@@ -55,18 +50,19 @@ export default {
         ...mapGetters([
             "cartSize",
             "cartTotalAmount",
+            "cartTotalAmountInc",
             "selectedTable",
         ]),
     },
     methods: {
-        addToCart(categoryId, dishNumber) {
-            this.$store.dispatch("addToCart", {categoryId, dishNumber});
+        addToCart(dishId) {
+            this.$store.dispatch("addToCart", dishId);
         },
-        removeFromCart(categoryId, dishNumber) {
-            this.$store.dispatch("removeFromCart", {categoryId, dishNumber});
+        removeFromCart(dishId) {
+            this.$store.dispatch("removeFromCart", dishId);
         },
-        deleteFromCart(categoryId, dishNumber) {
-            this.$store.dispatch("deleteFromCart", {categoryId, dishNumber});
+        deleteFromCart(dishId) {
+            this.$store.dispatch("deleteFromCart", dishId);
         },
         removeAllFromCart() {
             this.$store.dispatch("removeAllFromCart");

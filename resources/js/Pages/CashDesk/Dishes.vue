@@ -18,10 +18,9 @@
                                     <span>{{ dish.number }}</span>
                                     <span v-if="dish.addition">{{ dish.addition }}</span>
                                     <span>. {{ dish.name }}</span>
-                                    <span class="dotted text-black-50"></span>
-                                    <span>&euro; {{ dish.price }}</span>
-                                    <button type="button" class="btn btn-primary ml-1 btn-sm"
-                                            @click="addToCart(category.id, dish.number)">
+                                    <span class="dotted dotted-black text-black-50"></span>
+                                    <span>&euro; {{ dish.price.toFixed(2) }}</span>
+                                    <button type="button" class="btn btn-primary ml-1 btn-sm" @click="addToCart(dish.id)">
                                         <i class="fas fa-shopping-cart"></i>
                                     </button>
                                 </div>
@@ -58,9 +57,10 @@ export default {
         filteredMenu: Array,
         filterName: '',
         menu: Array,
+        dishes: Array,
     },
     created() {
-        this.$store.dispatch("fetchMenu", this.menu);
+        this.$store.dispatch("fetchDishes", this.dishes);
     },
     mounted() {
         this.categories = this.menu.map(function (el) {
@@ -69,7 +69,6 @@ export default {
     },
     computed: {
         filterProducts: function () {
-
             let result = JSON.parse(JSON.stringify(this.menu));
 
             if (!this.filterName || this.filterName === '') {
@@ -91,8 +90,8 @@ export default {
         }
     },
     methods: {
-        addToCart(categoryId, dishNumber) {
-            this.$store.dispatch("addToCart", {categoryId, dishNumber});
+        addToCart(dishId) {
+            this.$store.dispatch("addToCart", dishId);
         }
     },
 }

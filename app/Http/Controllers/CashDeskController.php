@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dish;
 use App\Models\MenuCategory;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CashDeskController extends Controller
@@ -16,7 +16,8 @@ class CashDeskController extends Controller
     public function dishes()
     {
         return Inertia::render('CashDesk/Dishes', [
-            'menu' => MenuCategory::with('dishes')->get(),
+            'menu' => MenuCategory::menuData(),
+            'dishes' => Dish::cartData(),
         ]);
     }
 }

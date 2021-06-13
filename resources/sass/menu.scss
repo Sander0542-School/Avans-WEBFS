@@ -9,6 +9,10 @@
             margin-left: 4px;
             margin-right: 4px;
             margin-bottom: 4px;
+
+            &.dotted-black {
+                border-bottom: 2px dotted black;
+            }
         }
 
         .fas {
