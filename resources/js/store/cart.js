@@ -53,6 +53,9 @@ export const cart = createStore({
         removeFromCart: (state, dishId) => {
             const cartProduct = state.cart.find((product) => product.id === dishId);
 
+            if (cartProduct.quantity === 1) {
+                return cart.commit("deleteFromCart", dishId);
+            }
             cartProduct.quantity--;
         },
         removeAllFromCart: (state) => {

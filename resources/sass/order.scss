@@ -1,9 +1,12 @@
 .order-card {
     background-color: transparent;
+    border: 2px solid yellow;
+}
+
+.card-square {
     width: 100%;
     padding-top: 100%;
     position: relative;
-    border: 2px solid yellow;
 
     > .card-body {
         position: absolute;

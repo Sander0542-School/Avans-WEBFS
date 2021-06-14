@@ -25,6 +25,7 @@ class OrderController extends Controller
                 'extra_option' => $category->extra_option,
                 'dishes' => $category->menuDishes(),
             ],
+            'dishes' => Dish::cartData(),
         ]);
     }
 }

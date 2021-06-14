@@ -9,7 +9,7 @@
                     <h5 class="mb-6">{{ product.quantity }}</h5>
 
                     <div>
-                        <button @click="product.quantity === 1 ? deleteFromCart(product.id) : removeFromCart(product.id)" class="btn btn-danger btn-sm" style="width: 25px;">
+                        <button @click="removeFromCart(product.id)" class="btn btn-danger btn-sm" style="width: 25px;">
                             -
                         </button>
                         <button @click="addToCart(product.id)" class="btn btn-success btn-sm ml-1" style="width: 25px;">
@@ -51,7 +51,6 @@ export default {
             "cartSize",
             "cartTotalAmount",
             "cartTotalAmountInc",
-            "selectedTable",
         ]),
     },
     methods: {
@@ -60,9 +59,6 @@ export default {
         },
         removeFromCart(dishId) {
             this.$store.dispatch("removeFromCart", dishId);
-        },
-        deleteFromCart(dishId) {
-            this.$store.dispatch("deleteFromCart", dishId);
         },
         removeAllFromCart() {
             this.$store.dispatch("removeAllFromCart");

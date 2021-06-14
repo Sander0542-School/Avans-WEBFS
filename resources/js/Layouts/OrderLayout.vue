@@ -4,8 +4,8 @@
             <div class="col">
                 <slot/>
             </div>
-            <div class="col col-md-4 col-lg-3">
-
+            <div class="col col-lg-4">
+                <order-cart/>
             </div>
         </div>
     </home-layout>
@@ -13,10 +13,19 @@
 
 <script>
 import HomeLayout from '@/Layouts/HomeLayout';
+import OrderCart from '@/Pages/Order/Cart';
 
 export default {
     components: {
-        HomeLayout
-    }
+        HomeLayout,
+        OrderCart
+    },
+    props: {
+        menu: Array,
+        dishes: Array,
+    },
+    created() {
+        this.$store.dispatch("fetchDishes", this.dishes);
+    },
 }
 </script>

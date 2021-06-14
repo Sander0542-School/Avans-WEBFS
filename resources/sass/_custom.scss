@@ -145,19 +145,37 @@
     cursor: pointer
 }
 
-.table.table-card {
-    margin: 0;
+.table {
 
-    th {
-        border: none;
+    &.table-card {
+        margin: 0;
+
+        th {
+            border: none;
+        }
+
+        th, td {
+            vertical-align: middle;
+        }
     }
 
-    th, td {
-        vertical-align: middle;
+    &.table-yellow {
+        color: yellow;
+    }
+
+    td .btn {
+        margin-left: 2px;
+        margin-right: 2px;
     }
 }
 
-.table td .btn {
-    margin-left: 2px;
-    margin-right: 2px;
+.btn {
+    &.gd-navigation {
+        background-image: linear-gradient(#00effa, #080a63);
+        color: white;
+        border: none;
+        margin: 0 4px;
+        min-width: 100px;
+        border-radius: 0;
+    }
 }
