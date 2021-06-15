@@ -16,8 +16,19 @@
                             +
                         </button>
                     </div>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseCartItem' + product.id" aria-expanded="false" :aria-controls="'collapseCartItem' + product.id">
+                        <i class="fa fa-arrow-down" aria-hidden="true"></i> {{product.id}}
+                    </button>
+
                 </div>
-                <!--                <textarea class="form-control" v-model="product.notes" placeholder="Beschrijving toevoegen"></textarea>-->
+                <div class="collapse" v-bind:id="'collapseCartItem' + product.id" >
+                    <div class="card card-body">
+                        <textarea class="form-control" v-model="product.remark" placeholder="Beschrijving toevoegen"></textarea>
+                    </div>
+                </div>
+
+
+
                 <hr/>
             </div>
             <div class="box">
@@ -30,7 +41,7 @@
                         <a @click="removeAllFromCart()" href="#" class="btn btn-light btn-block"><i class="fa fa-times-circle "></i> Verwijderen</a>
                     </div>
                     <div class="col-md-6">
-                        <a @click="removeAllFromCart()" href="#" class="btn btn-primary btn-block"><i class="fa fa-shopping-bag"></i> Afrekenen</a>
+                        <a @click="submit()" href="#" class="btn btn-primary btn-block"><i class="fa fa-shopping-bag"></i> Afrekenen</a>
                     </div>
                 </div>
             </div>
@@ -62,7 +73,11 @@ export default {
         },
         removeAllFromCart() {
             this.$store.dispatch("removeAllFromCart");
-        }
+        },
+        submit() {
+            let data = {'cart': this.cart};
+            this.$inertia.post('/cashdesk/store', data)
+        },
     }
 }
 </script>

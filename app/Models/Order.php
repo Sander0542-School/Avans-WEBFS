@@ -9,6 +9,8 @@ class Order extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $fillable = [
         'user_id',
         'table_number',

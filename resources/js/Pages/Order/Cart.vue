@@ -56,7 +56,7 @@ export default {
         return {
             form: this.$inertia.form({
                 dishes: this.cart,
-                table:
+                table: ''
             }),
         }
     },
