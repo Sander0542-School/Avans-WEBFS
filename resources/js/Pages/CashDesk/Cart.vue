@@ -9,23 +9,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-                {{$page.props.errors}}
-            <div v-if="$page.props.errors">
+            <div v-if="$page.props.errors.createOrder ">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <ul class="p-0 m-0 list-unstyled">
-                        <div v-for="error in $page.props.errors">
+                        <div v-for="error in $page.props.errors.createOrder">
                             <li> {{ error }}</li>
-
                         </div>
                     </ul>
                 </div>
 
             </div>
 
-            <div v-for="product in cart" :key="product.id">
+            <div v-for="(product, index) in cart" :key="product.id">
+
                 <div class="d-flex justify-content-between">
                     <h5 class="mb-6">{{ product.number }}</h5>
                     <h5 class="mb-6">{{ product.name }}</h5>
@@ -41,16 +40,15 @@
                         </button>
                     </div>
                     <button class="btn btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseCartItem' + product.id" aria-expanded="false" :aria-controls="'collapseCartItem' + product.id">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i> {{product.id}}
+                        <i class="fa fa-arrow-down" aria-hidden="true"></i> {{ product.id }}
                     </button>
 
                 </div>
-                <div class="collapse" v-bind:id="'collapseCartItem' + product.id" >
+                <div class="collapse" v-bind:id="'collapseCartItem' + product.id">
                     <div class="card card-body">
                         <textarea class="form-control" v-model="product.remark" placeholder="Beschrijving toevoegen"></textarea>
                     </div>
                 </div>
-
 
 
                 <hr/>
@@ -78,7 +76,9 @@ import {mapGetters, mapState} from 'vuex';
 
 export default {
     name: "Cart",
-
+    props: {
+        errors: {}
+    },
     computed: {
         ...mapState([
             "cart"
@@ -100,8 +100,8 @@ export default {
             this.$store.dispatch("removeAllFromCart");
         },
         submit() {
-            // let data = {'cart': this.cart};
-            this.$inertia.post('/cashdesk/store', {cart: this.cart,  onSuccess: () => console.log('1')})
+            let data = {'cart': this.cart};
+            this.$inertia.post('/cashdesk/store', data, {errorBag: 'createOrder'})
         },
     }
 }
