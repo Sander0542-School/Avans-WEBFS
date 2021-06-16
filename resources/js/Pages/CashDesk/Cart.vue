@@ -63,7 +63,7 @@
                         <a @click="removeAllFromCart()" href="#" class="btn btn-light btn-block"><i class="fa fa-times-circle "></i> Verwijderen</a>
                     </div>
                     <div class="col-md-6">
-                        <a @click="submit()" href="#" class="btn btn-primary btn-block"><i class="fa fa-shopping-bag"></i> Afrekenen</a>
+                        <button :disabled="isDisabled" @click.prevent="submit()" type="button" class="btn btn-primary btn-block"><i class="fa fa-shopping-bag"></i> Afrekenen</button>
                     </div>
                 </div>
             </div>
@@ -88,6 +88,10 @@ export default {
             "cartTotalAmount",
             "cartTotalAmountInc",
         ]),
+        isDisabled: function(){
+            console.log(this.cart);
+            return this.cart.length === 0;
+        }
     },
     methods: {
         addToCart(dishId) {

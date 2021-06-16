@@ -27,10 +27,6 @@ class CashDeskController extends Controller
 
     public function store(StoreOrderRequest $request)
     {
-        //dd($request->input());
-
-
-
         $order = Order::create([
             'user_id' => \Auth::user()->id,
             'table_number' => null

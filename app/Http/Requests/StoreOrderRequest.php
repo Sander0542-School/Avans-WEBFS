@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class StoreOrderRequest extends FormRequest
 {
@@ -26,7 +27,7 @@ class StoreOrderRequest extends FormRequest
         return [
             'cart.*.id' => ['required', 'max:50', 'integer', 'exists:dishes'],
             'cart.*.quantity' => ['required', 'max:50', 'integer'],
-            'cart.*.remark' => ['max:150', 'string'],
+            'cart.*.remark' => ['max:150', 'string', 'nullable'],
         ];
     }
 
