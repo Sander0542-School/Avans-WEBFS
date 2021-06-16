@@ -1,6 +1,30 @@
 <template>
     <div class="">
         <div class="card p-3 ">
+
+
+            <div v-if="$page.props.flash.message" class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $page.props.flash.message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                {{$page.props.errors}}
+            <div v-if="$page.props.errors">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <ul class="p-0 m-0 list-unstyled">
+                        <div v-for="error in $page.props.errors">
+                            <li> {{ error }}</li>
+
+                        </div>
+                    </ul>
+                </div>
+
+            </div>
+
             <div v-for="product in cart" :key="product.id">
                 <div class="d-flex justify-content-between">
                     <h5 class="mb-6">{{ product.number }}</h5>
@@ -54,6 +78,7 @@ import {mapGetters, mapState} from 'vuex';
 
 export default {
     name: "Cart",
+
     computed: {
         ...mapState([
             "cart"
@@ -75,8 +100,8 @@ export default {
             this.$store.dispatch("removeAllFromCart");
         },
         submit() {
-            let data = {'cart': this.cart};
-            this.$inertia.post('/cashdesk/store', data)
+            // let data = {'cart': this.cart};
+            this.$inertia.post('/cashdesk/store', {cart: this.cart,  onSuccess: () => console.log('1')})
         },
     }
 }
