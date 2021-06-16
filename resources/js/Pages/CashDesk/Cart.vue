@@ -9,6 +9,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div v-if="$page.props.errors.createOrder ">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -20,7 +21,6 @@
                         </div>
                     </ul>
                 </div>
-
             </div>
 
             <div v-for="(product, index) in cart" :key="product.id">
@@ -105,7 +105,7 @@ export default {
         },
         submit() {
             let data = {'cart': this.cart};
-            this.$inertia.post('/cashdesk/store', data, {errorBag: 'createOrder'})
+            this.$inertia.post('/cashdesk/store', data, {errorBag: 'createOrder', onSuccess: () => this.removeAllFromCart()})
         },
     }
 }
