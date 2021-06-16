@@ -2,7 +2,6 @@
     <div class="">
         <div class="card p-3 ">
 
-
             <div v-if="$page.props.flash.message" class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ $page.props.flash.message }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -42,15 +41,12 @@
                     <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" :data-target="'#collapseCartItem' + product.id" aria-expanded="false" :aria-controls="'collapseCartItem' + product.id">
                         <i class="fa fa-arrow-down" aria-hidden="true"></i>
                     </button>
-
                 </div>
                 <div class="collapse" v-bind:id="'collapseCartItem' + product.id">
                     <div class="card card-body">
                         <textarea class="form-control" v-model="product.remark" placeholder="Beschrijving toevoegen"></textarea>
                     </div>
                 </div>
-
-
                 <hr/>
             </div>
             <div class="box">
@@ -63,7 +59,9 @@
                         <a @click="removeAllFromCart()" href="#" class="btn btn-light btn-block"><i class="fa fa-times-circle "></i> Verwijderen</a>
                     </div>
                     <div class="col-md-6">
-                        <button :disabled="isDisabled" @click.prevent="submit()" type="button" class="btn btn-primary btn-block"><i class="fa fa-shopping-bag"></i> Afrekenen</button>
+                        <button :disabled="isDisabled" @click.prevent="submit()" type="button" class="btn btn-primary btn-block">
+                            <i class="fa fa-shopping-bag"></i> Afrekenen
+                        </button>
                     </div>
                 </div>
             </div>
@@ -88,7 +86,7 @@ export default {
             "cartTotalAmount",
             "cartTotalAmountInc",
         ]),
-        isDisabled: function(){
+        isDisabled: function () {
             console.log(this.cart);
             return this.cart.length === 0;
         }
@@ -105,7 +103,10 @@ export default {
         },
         submit() {
             let data = {'cart': this.cart};
-            this.$inertia.post('/cashdesk/store', data, {errorBag: 'createOrder', onSuccess: () => this.removeAllFromCart()})
+            this.$inertia.post('/cashdesk/store', data, {
+                errorBag: 'createOrder',
+                onSuccess: () => this.removeAllFromCart()
+            })
         },
     }
 }

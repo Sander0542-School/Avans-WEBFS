@@ -43,7 +43,6 @@ class CashDeskController extends Controller
             $items
         );
 
-        //return Redirect::route('cashdesk.dishes');
         return redirect()->back()->with('message', 'Order succesvol aangemaakt.');
     }
 
