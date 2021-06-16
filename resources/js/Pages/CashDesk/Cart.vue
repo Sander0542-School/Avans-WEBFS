@@ -39,8 +39,8 @@
                             +
                         </button>
                     </div>
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" :data-target="'#collapseCartItem' + product.id" aria-expanded="false" :aria-controls="'collapseCartItem' + product.id">
-                        <i class="fa fa-arrow-down" aria-hidden="true"></i> {{ product.id }}
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" :data-target="'#collapseCartItem' + product.id" aria-expanded="false" :aria-controls="'collapseCartItem' + product.id">
+                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
                     </button>
 
                 </div>
