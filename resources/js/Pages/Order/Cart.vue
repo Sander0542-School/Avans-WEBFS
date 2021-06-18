@@ -18,7 +18,7 @@
                         <td>{{ product.quantity }}x</td>
                         <td>&euro; {{ product.price_inc.toFixed(2) }}</td>
                         <td>
-                            <button @click="removeFromCart(product.id)">-</button>
+                            <button @click="removeFromCart(product.id)"><i class="fas fa-minus-circle"></i></button>
                         </td>
                     </tr>
                     </tbody>
@@ -56,7 +56,7 @@ export default {
         return {
             form: this.$inertia.form({
                 dishes: this.cart,
-                table:
+                // table:
             }),
         }
     },
