@@ -18,7 +18,7 @@
                         <td>{{ product.quantity }}x</td>
                         <td>&euro; {{ product.price_inc.toFixed(2) }}</td>
                         <td>
-                            <button @click="removeFromCart(product.id)"><i class="fas fa-minus-circle"></i></button>
+                            <i class="fas fa-minus-circle c-pointer" @click="removeFromCart(product.id)"></i>
                         </td>
                     </tr>
                     </tbody>
