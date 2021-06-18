@@ -121,7 +121,7 @@
     height: 100%;
 
     .track {
-        color: yellow;
+        color: $primary_color;
         display: inline-block;
         width: max-content;
         height: 100%;
@@ -160,7 +160,7 @@
     }
 
     &.table-yellow {
-        color: yellow;
+        color: $primary_color;
     }
 
     td .btn {

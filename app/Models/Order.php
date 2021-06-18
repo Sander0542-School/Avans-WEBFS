@@ -24,13 +24,18 @@ class Order extends Model
         return $this->hasManyThrough(Dish::class, OrderDish::class, 'order_id', 'id', 'id', 'dish_id');
     }
 
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
     public function getPriceAttribute()
     {
-        return $this->dishes->sum('price');
+        return $this->lines->sum('price');
     }
 
     public function getPriceIncAttribute()
     {
-        return $this->dishes->sum('price_inc');
+        return $this->lines->sum('price_inc');
     }
 }
