@@ -47,6 +47,7 @@ export const cart = createStore({
                     ...product,
                     quantity: 1,
                     remark: '',
+                    dish_rice_option: '',
                 });
             }
         },

@@ -28,6 +28,7 @@ class StoreOrderRequest extends FormRequest
             'cart.*.id' => ['required', 'max:50', 'integer', 'exists:dishes'],
             'cart.*.quantity' => ['required', 'max:50', 'integer'],
             'cart.*.remark' => ['max:150', 'string', 'nullable'],
+            'cart.*.dish_rice_option' => ['max:150', 'integer', 'nullable', 'exists:dish_rice_options,id'],
         ];
     }
 

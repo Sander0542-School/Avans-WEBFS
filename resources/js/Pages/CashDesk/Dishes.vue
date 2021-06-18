@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="col-sm-5 ">
-                <cart></cart>
+                <cart :dish_rice_options="dish_rice_options"></cart>
             </div>
         </div>
     </app-layout>
@@ -58,6 +58,7 @@ export default {
         filterName: '',
         menu: Array,
         dishes: Array,
+        dish_rice_options: Array,
     },
     created() {
         this.$store.dispatch("fetchDishes", this.dishes);

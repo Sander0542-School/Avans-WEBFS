@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreOrderRequest;
 use App\Models\Dish;
+use App\Models\DishRiceOption;
 use App\Models\MenuCategory;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ class CashDeskController extends Controller
     {
         return Inertia::render('CashDesk/Dishes', [
             'menu' => MenuCategory::menuData(),
+            'dish_rice_options' => DishRiceOption::all(),
             'dishes' => Dish::cartData(),
         ]);
     }
@@ -35,7 +37,16 @@ class CashDeskController extends Controller
         $items = [];
         foreach ($request->input('cart') as $line){
             $dish = Dish::findOrFail($line['id']);
-            $newLine = ['order_id' => $order->id, 'dish_id' => $dish->id, 'amount' => $line['quantity'],'unit_price' => $dish->getPriceIncAttribute(), 'remark' => $line['remark']];
+
+            $newLine =
+                [   'order_id' => $order->id,
+                    'dish_id' => $dish->id,
+                    'amount' => $line['quantity'],
+                    'unit_price' => $dish->getPriceIncAttribute(),
+                    'remark' => $line['remark'],
+                    'rice_option_id' => $line['dish_rice_option'] != "" ? $line['dish_rice_option'] : null
+                ];
+
             array_push($items, $newLine);
         }
 
