@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Manager\CashDesk;
 
 use Illuminate\Foundation\Http\FormRequest;
 use phpDocumentor\Reflection\Types\Nullable;

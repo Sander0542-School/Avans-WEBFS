@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\Manager\CashDesk\StoreOrderRequest;
 use App\Models\Dish;
 use App\Models\DishRiceOption;
 use App\Models\MenuCategory;

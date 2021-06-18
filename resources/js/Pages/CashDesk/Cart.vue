@@ -44,9 +44,9 @@
                 </div>
                 <div class="collapse" v-bind:id="'collapseCartItem' + product.id">
                     <div class="card card-body">
-                        <textarea class="form-control" v-model="product.remark" placeholder="Beschrijving toevoegen"></textarea>
-                        <select v-model="product.dish_rice_option">
-                            <option disabled value="">Please select one</option>
+                        <textarea class="form-control" maxlength="150" v-model="product.remark" placeholder="Beschrijving toevoegen"></textarea>
+                        <select class="form-control mt-2" v-model="product.dish_rice_option">
+                            <option value="">Geen bijgerecht</option>
                             <option v-for="option in $page.props.dish_rice_options" v-bind:value="option.id">
                                 {{ option.name }}
                             </option>
