@@ -4,7 +4,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <inertia-link :href="route('cashdesk.index')">Kassa</inertia-link>
+                        <inertia-link :href="route('manager.cashdesk.index')">Kassa</inertia-link>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Bestellingen</li>
                 </ol>
@@ -36,7 +36,7 @@
                         <button v-if="order.status === 'OPEN'" class="btn btn-success" @click="updateOrderStatus(order, 'CLOSED')">
                             <i class="fas fa-check"></i>
                         </button>
-                        <inertia-link class="btn btn-primary" :href="route('cashdesk.orders.show', order.id)">
+                        <inertia-link class="btn btn-primary" :href="route('manager.cashdesk.orders.show', order.id)">
                             <i class="fas fa-eye"></i>
                         </inertia-link>
                     </td>
@@ -65,7 +65,7 @@ export default {
     methods: {
         updateOrderStatus(order, status) {
             if (confirm(`Weet je zeker dat je de status van order #${order.id} wil wijzigen?`)) {
-                this.$inertia.patch(this.route('cashdesk.orders.status', order.id), {
+                this.$inertia.patch(this.route('manager.cashdesk.orders.status', order.id), {
                     status: status
                 }, {
                     preserveScroll: true,

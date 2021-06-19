@@ -12,7 +12,7 @@ class CashDeskOrdersController extends Controller
 {
     public function index()
     {
-        return Inertia::render('CashDesk/Orders/Index', [
+        return Inertia::render('Manager/CashDesk/Orders/Index', [
             'orders' => Order::with('lines')->orderByDesc('created_at')->paginate()->through(function (Order $order) {
                 return [
                     'id' => $order->id,
@@ -28,7 +28,7 @@ class CashDeskOrdersController extends Controller
 
     public function show(Order $order)
     {
-        return Inertia::render('CashDesk/Orders/Show', [
+        return Inertia::render('Manager/CashDesk/Orders/Show', [
             'order' => [
                 'id' => $order->id,
                 'seller' => $order->user->name ?? 'Customer',

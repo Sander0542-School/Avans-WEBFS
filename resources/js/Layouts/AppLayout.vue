@@ -19,6 +19,10 @@
               Dashboard
             </jet-nav-link>
 
+            <jet-nav-link :href="route('manager.cashdesk.index')" :active="route().current().startsWith('manager.cashdesk.')">
+              Kassa
+            </jet-nav-link>
+
             <jet-nav-link :href="route('manager.menus.index')" :active="route().current().startsWith('manager.menus.')">
               Menu
             </jet-nav-link>

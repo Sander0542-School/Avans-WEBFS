@@ -3,7 +3,7 @@
         <template #header>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><inertia-link :href="route('cashdesk.index')">Kassa</inertia-link></li>
+                    <li class="breadcrumb-item"><inertia-link :href="route('manager.cashdesk.index')">Kassa</inertia-link></li>
                     <li class="breadcrumb-item active" aria-current="page">Verkopen</li>
                 </ol>
             </nav>
