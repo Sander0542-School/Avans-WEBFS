@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\CashDesk;
 
 use Illuminate\Foundation\Http\FormRequest;
-use phpDocumentor\Reflection\Types\Nullable;
 
-class StoreOrderRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +24,22 @@ class StoreOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'cart.*.id' => ['required', 'max:50', 'integer', 'exists:dishes'],
-            'cart.*.quantity' => ['required', 'max:50', 'integer'],
-            'cart.*.remark' => ['max:150', 'string', 'nullable'],
+            'cart.*.id' => [
+                'required',
+                'max:50',
+                'integer',
+                'exists:dishes',
+            ],
+            'cart.*.quantity' => [
+                'required',
+                'max:50',
+                'integer',
+            ],
+            'cart.*.remark' => [
+                'max:150',
+                'string',
+                'nullable',
+            ],
         ];
     }
 

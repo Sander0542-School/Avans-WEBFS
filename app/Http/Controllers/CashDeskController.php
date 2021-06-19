@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreOrderRequest;
+use App\Http\Requests\CashDesk\StoreRequest;
 use App\Models\Dish;
 use App\Models\MenuCategory;
 use App\Models\Order;
-use Illuminate\Http\Request;
-use App\Models\OrderDish;
 use Inertia\Inertia;
 
 class CashDeskController extends Controller
@@ -25,25 +23,26 @@ class CashDeskController extends Controller
         ]);
     }
 
-    public function store(StoreOrderRequest $request)
+    public function store(StoreRequest $request)
     {
+        $data = $request->validated();
+
         $order = Order::create([
-            'user_id' => \Auth::user()->id,
-            'table_number' => null
+            'user_id' => $request->user()->id ?? null,
+            'table_number' => null,
         ]);
 
-        $items = [];
-        foreach ($request->input('cart') as $line){
+        $order->lines()->createMany(collect($data['cart'])->map(function ($line) {
             $dish = Dish::findOrFail($line['id']);
-            $newLine = ['order_id' => $order->id, 'dish_id' => $dish->id, 'amount' => $line['quantity'],'unit_price' => $dish->getPriceIncAttribute(), 'remark' => $line['remark']];
-            array_push($items, $newLine);
-        }
 
-        $order->lines()->createMany(
-            $items
-        );
+            return [
+                'dish_id' => $dish->id,
+                'amount' => $line['quantity'],
+                'unit_price' => $dish->getPriceIncAttribute(),
+                'remark' => $line['remark'],
+            ];
+        }));
 
         return redirect()->back()->with('message', 'Order succesvol aangemaakt.');
     }
-
 }
