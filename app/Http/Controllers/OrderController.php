@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Enums\OrderStatus;
+use App\Events\CustomerRequestCreated;
 use App\Http\Requests\Order\StoreRequest;
+use App\Models\CustomerHelpRequest;
 use App\Models\Dish;
 use App\Models\MenuCategory;
 use App\Models\Order;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -63,5 +66,17 @@ class OrderController extends Controller
         }
 
         return redirect()->back()->with('error', 'De bestelling kon niet worden verwerkt');
+    }
+
+    public function employeeAssistance(Request $request)
+    {
+        $customerRequest = new CustomerHelpRequest();
+        $customerRequest->table_number = $request->table_number;
+        $customerRequest->save();
+
+        //broadcast(new CustomerRequestCreated($customerRequest));
+        //event(new CustomerRequestCreated($customerRequest));
+
+        return redirect()->back();
     }
 }

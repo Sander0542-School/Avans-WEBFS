@@ -4,7 +4,7 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\CashDeskController;
 use App\Http\Controllers\Manager\CashDeskOrdersController;
-use App\Http\Controllers\Manager\CustomerController;
+use App\Http\Controllers\Manager\CashDeskRequestsController;
 use App\Http\Controllers\Manager\MenuCategoryController;
 use App\Http\Controllers\Manager\MenuCategoryDishController;
 use App\Http\Controllers\Manager\SalesController;
@@ -33,8 +33,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/help', [CustomerController::class, 'index'])->name('post');
-Route::post('/help', [CustomerController::class, 'storeRequest']);
+Route::get('/help', [OrderController::class, 'index']);
+Route::post('/help', [OrderController::class, 'employeeAssistance']);
 
 Route::name('home.')->group(function () {
     Route::get('', [HomeController::class, 'index'])->name('index');
@@ -69,6 +69,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::get('', [CashDeskController::class, 'index'])->name('index');
             Route::get('dishes', [CashDeskController::class, 'dishes'])->name('dishes');
             Route::post('store', [CashDeskController::class, 'store'])->name('store');
+
+            Route::prefix('assistances')->name('assistances.')->group(function () {
+                Route::get('', [CashDeskController::class, 'assistance'])->name('index');
+                Route::post('confirm', [CashDeskRequestsController::class, 'confirm'])->name('confirm');
+            });
 
             Route::prefix('orders')->name('orders.')->group(function () {
                 Route::get('', [CashDeskOrdersController::class, 'index'])->name('index');

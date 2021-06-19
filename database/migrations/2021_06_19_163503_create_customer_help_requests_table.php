@@ -16,6 +16,7 @@ class CreateCustomerHelpRequestsTable extends Migration
         Schema::create('customer_help_requests', function (Blueprint $table) {
             $table->id();
             $table->integer('table_number');
+            $table->boolean('confirmed')->default(0);
             $table->timestamps();
         });
     }
