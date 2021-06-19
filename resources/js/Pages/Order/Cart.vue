@@ -31,6 +31,11 @@
                 </table>
 
                 <div class="form-group">
+                    <jet-label for="customer" value="Naam"/>
+                    <jet-input id="customer" type="text" :class="{ 'is-invalid': form.errors.customer }" v-model="form.customer" ref="customer" autocomplete="name"/>
+                    <jet-input-error :message="form.errors.customer" class="mt-2 text-yellow"/>
+                </div>
+                <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         <jet-checkbox id="table_order" name="table_order" v-model:checked="form.table_order" />
 
@@ -83,6 +88,7 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
+                customer: null,
                 table_order: true,
                 table_number: null,
             }),

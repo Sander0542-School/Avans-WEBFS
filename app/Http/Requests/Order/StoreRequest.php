@@ -26,6 +26,11 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'customer' => [
+                'required',
+                'string',
+                'max:255',
+            ],
             'table_order' => [
                 'required',
                 'boolean',
@@ -51,7 +56,7 @@ class StoreRequest extends FormRequest
             'cart.*.remark' => [
                 'nullable',
                 'string',
-                'max:255'
+                'max:255',
             ],
         ];
     }
