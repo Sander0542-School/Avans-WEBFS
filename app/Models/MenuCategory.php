@@ -23,30 +23,38 @@ class MenuCategory extends Model
         return $this->hasMany(Dish::class, 'category_id', 'id');
     }
 
-    public static function menuData()
+    public function menuDishes()
     {
-        return self::with('dishes')->get()->map(function (MenuCategory $category) {
+        return $this->dishes->map(function (Dish $dish) {
             return [
-                'name' => $category->name,
-                'extra_option' => $category->extra_option,
-                'dishes' => $category->dishes->map(function (Dish $dish) {
+                'id' => $dish->id,
+                'number' => $dish->number,
+                'addition' => $dish->addition,
+                'name' => $dish->name,
+                'description' => $dish->description,
+                'price' => $dish->price_inc,
+                'spiciness' => $dish->spiciness_level ?? 0,
+                'allergies' => $dish->allergies->map(function (Allergy $allergy) {
                     return [
-                        'id' => $dish->id,
-                        'number' => $dish->number,
-                        'addition' => $dish->addition,
-                        'name' => $dish->name,
-                        'description' => $dish->description,
-                        'price' => $dish->price_inc,
-                        'spiciness' => $dish->spiciness_level ?? 0,
-                        'allergies' => $dish->allergies->map(function (Allergy $allergy) {
-                            return [
-                                'name' => $allergy->name,
-                                'icon' => $allergy->icon,
-                            ];
-                        }),
+                        'name' => $allergy->name,
+                        'icon' => $allergy->icon,
                     ];
                 }),
             ];
         });
+    }
+
+    public static function menuData($withDishes = true)
+    {
+        $dishes = ($withDishes ? self::with('dishes')->get() : self::all());
+
+        return $dishes->map(function (MenuCategory $category) use ($withDishes) {
+            return [
+                'id' => $category->id,
+                'name' => $category->name,
+                'extra_option' => $category->extra_option,
+                'dishes' => $withDishes ? $category->menuDishes() : null,
+            ];
+        })->except($withDishes ? [] : ['dishes']);
     }
 }

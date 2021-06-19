@@ -46,4 +46,18 @@ class Dish extends Model
     {
         return (($this->btw + 100) / 100) * $this->price;
     }
+
+    public static function cartData()
+    {
+        return self::all()->map(function (self $dish) {
+            return [
+                'id' => $dish->id,
+                'number' => $dish->number,
+                'addition' => $dish->addition,
+                'name' => $dish->name,
+                'price' => $dish->price,
+                'price_inc' => $dish->price_inc,
+            ];
+        });
+    }
 }

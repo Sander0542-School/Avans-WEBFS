@@ -1,0 +1,23 @@
+.order-card {
+    background-color: transparent;
+    border: 2px solid $primary_color;
+}
+
+.card-square {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+
+    > .card-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+
+        &.row > .card-title {
+            margin: auto 0;
+            text-align: center;
+        }
+    }
+}

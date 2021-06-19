@@ -110,7 +110,7 @@ class MenuCategoryController extends Controller
             return redirect()->back()->with('success', 'De categorie is succesvol bijgewerkt');
         }
 
-        return redirect()->back()->with('error', 'De categorie is kon niet worden bijgewerkt');
+        return redirect()->back()->with('error', 'De categorie kon niet worden bijgewerkt');
     }
 
     /**

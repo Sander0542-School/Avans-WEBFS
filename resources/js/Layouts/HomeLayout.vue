@@ -57,17 +57,18 @@
                         <div class="my-4 text-center">
                             <h2>Chinees Indische Specialiteiten</h2>
                             <h1>De Gouden Draak</h1>
-                            <inertia-link class="btn gd-navigation" :href="route('home.menu')">Menu</inertia-link>
-                            <inertia-link class="btn gd-navigation" :href="route('home.news')">News</inertia-link>
-                            <inertia-link class="btn gd-navigation" :href="route('home.contact')">Contact</inertia-link>
+                            <inertia-link class="btn gd-navigation" :href="route('home.menu')">{{ $t('pages.menu') }}</inertia-link>
+                            <inertia-link class="btn gd-navigation" :href="route('home.news')">{{ $t('pages.news') }}</inertia-link>
+                            <inertia-link class="btn gd-navigation" :href="route('home.contact')">{{ $t('pages.contact') }}</inertia-link>
+                            <inertia-link class="btn gd-navigation" :href="route('order.index')">{{ $t('pages.order') }}</inertia-link>
                         </div>
                     </div>
                     <img class="content-dragon float-right d-none d-md-block transform-vert" src="/pictures/dragon-small.png" alt="GoudenDraak"/>
                 </div>
-                <slot></slot>
+                <slot/>
                 <div class="content-footer">
                     <div class="languages text-center">
-                        <span class="c-pointer mx-2" v-for="locale in $i18n.availableLocales" @click="changeLocale(locale)">{{ $t(`locale.${locale}`) }}</span>
+                        <span class="c-pointer mx-2" v-for="locale in $i18n.availableLocales" :key="locale" @click="changeLocale(locale)">{{ $t(`locale.${locale}`) }}</span>
                     </div>
                 </div>
             </div>

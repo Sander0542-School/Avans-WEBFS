@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\OrderStatus;
 use App\Models\Dish;
 use App\Models\MenuCategory;
 use App\Models\Order;
@@ -110,6 +111,7 @@ class DbImport extends Command
             $newOrder = Order::create([
                 'user_id' => $importUser->id,
                 'table_number' => null,
+                'status' => OrderStatus::CLOSED(),
                 'created_at' => $order->saleDate,
                 'updated_at' => $order->saleDate,
             ]);
