@@ -74,9 +74,6 @@ class OrderController extends Controller
         $customerRequest->table_number = $request->table_number;
         $customerRequest->save();
 
-        //broadcast(new CustomerRequestCreated($customerRequest));
-        //event(new CustomerRequestCreated($customerRequest));
-
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Vraag verstuurd, u wordt zo geholpen');
     }
 }

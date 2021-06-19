@@ -95,7 +95,6 @@ export default {
             "cartTotalAmountInc",
         ]),
         isDisabled: function () {
-            console.log(this.cart);
             return this.cart.length === 0;
         }
     },
@@ -111,7 +110,7 @@ export default {
         },
         submit() {
             let data = {'cart': this.cart};
-            this.$inertia.post('/cashdesk/store', data, {
+            this.$inertia.post('store', data, {
                 errorBag: 'createOrder',
                 onSuccess: () => this.removeAllFromCart()
             })

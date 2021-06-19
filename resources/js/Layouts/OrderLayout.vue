@@ -1,7 +1,18 @@
 <template>
     <home-layout>
-        <input v-model="tableNumber" placeholder="Table Number">
-        <button @click="askHelp()" type="button" class="btn btn-primary">Ask for help</button>
+        <form class="form-inline">
+            <div v-if="$page.props.flash.message" class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $page.props.flash.message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="number" class="form-control" v-model="tableNumber" placeholder="Tafel nummer">
+            </div>
+            <button :disabled="tableNumber === ''" @click="askHelp()" type="button" class="btn gd-navigation">Vraag om hulp</button>
+        </form>
+
         <div class="row">
             <div class="col">
                 <slot/>
