@@ -34,7 +34,7 @@ class OrderDish extends Model
 
     public static function create(array $attributes = [])
     {
-        $attributes['unit_price'] = $attributes['unit_price'] ?? Dish::find($attributes['dish_id'] ?? 0, ['price'])->price ?? null;
+        $attributes['unit_price'] = $attributes['unit_price'] ?? Dish::find($attributes['dish_id'] ?? 0, ['base_price'])->price ?? null;
 
         return static::query()->create($attributes);
     }

@@ -33,6 +33,31 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\Discount
+ *
+ * @property int $id
+ * @property string $name
+ * @property int $discount
+ * @property \Illuminate\Support\Carbon $valid_until
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Dish[] $dishes
+ * @property-read int|null $dishes_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Discount newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Discount newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Discount query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Discount whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Discount whereDiscount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Discount whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Discount whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Discount whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Discount whereValidUntil($value)
+ */
+	class Discount extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Dish
  *
  * @property int $id
@@ -41,7 +66,7 @@ namespace App\Models{
  * @property string|null $addition
  * @property string $name
  * @property string $description
- * @property string $price
+ * @property float $base_price
  * @property int $btw
  * @property int|null $spiciness_level
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -50,14 +75,19 @@ namespace App\Models{
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Allergy[] $allergies
  * @property-read int|null $allergies_count
  * @property-read \App\Models\MenuCategory|null $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Discount[] $discounts
+ * @property-read int|null $discounts_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\DishAllergy[] $dish_allergies
  * @property-read int|null $dish_allergies_count
+ * @property-read mixed $base_price_inc
+ * @property-read mixed $price
  * @property-read mixed $price_inc
  * @method static \Illuminate\Database\Eloquent\Builder|Dish newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Dish newQuery()
  * @method static \Illuminate\Database\Query\Builder|Dish onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Dish query()
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereAddition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Dish whereBasePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereBtw($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereCreatedAt($value)
@@ -66,7 +96,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereNumber($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Dish wherePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereSpicinessLevel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Dish whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Dish withTrashed()
@@ -88,6 +117,29 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|DishAllergy whereDishId($value)
  */
 	class DishAllergy extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\DishDiscount
+ *
+ * @property int $id
+ * @property int $dish_id
+ * @property int $discount_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Discount|null $discount
+ * @property-read \App\Models\Dish|null $dish
+ * @method static \Illuminate\Database\Eloquent\Builder|DishDiscount newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DishDiscount newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|DishDiscount query()
+ * @method static \Illuminate\Database\Eloquent\Builder|DishDiscount whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DishDiscount whereDiscountId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DishDiscount whereDishId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DishDiscount whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|DishDiscount whereUpdatedAt($value)
+ */
+	class DishDiscount extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -137,21 +189,28 @@ namespace App\Models{
  * App\Models\Order
  *
  * @property int $id
- * @property int $user_id
+ * @property \App\Enums\OrderStatus $status
+ * @property string|null $customer
+ * @property int|null $user_id
  * @property int|null $table_number
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Dish[] $dishes
  * @property-read int|null $dishes_count
+ * @property-read mixed $customer_token
  * @property-read mixed $price
  * @property-read mixed $price_inc
+ * @property-read mixed $qr_code
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderDish[] $lines
  * @property-read int|null $lines_count
+ * @property-read \App\Models\User|null $user
  * @method static \Illuminate\Database\Eloquent\Builder|Order newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Order query()
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereCustomer($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Order whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereTableNumber($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Order whereUserId($value)
@@ -167,7 +226,7 @@ namespace App\Models{
  * @property int $dish_id
  * @property int $order_id
  * @property int $amount
- * @property string $unit_price
+ * @property float $unit_price
  * @property int $btw
  * @property string|null $remark
  * @property int|null $rice_option_id
