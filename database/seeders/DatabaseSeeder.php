@@ -22,5 +22,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(AllergySeeder::class);
+        $this->call(DishRiceOptionSeeder::class);
     }
 }

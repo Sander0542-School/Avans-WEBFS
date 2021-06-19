@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CashDesk\StoreRequest;
 use App\Models\Dish;
+use App\Models\DishRiceOption;
 use App\Models\MenuCategory;
 use App\Models\Order;
 use Inertia\Inertia;
@@ -19,6 +20,7 @@ class CashDeskController extends Controller
     {
         return Inertia::render('CashDesk/Dishes', [
             'menu' => MenuCategory::menuData(),
+            'dish_rice_options' => DishRiceOption::all(),
             'dishes' => Dish::cartData(),
         ]);
     }
@@ -38,8 +40,9 @@ class CashDeskController extends Controller
             return [
                 'dish_id' => $dish->id,
                 'amount' => $line['quantity'],
-                'unit_price' => $dish->getPriceIncAttribute(),
+                'unit_price' => $dish->price,
                 'remark' => $line['remark'],
+                'rice_option_id' => $line['dish_rice_option'] != "" ? $line['dish_rice_option'] : null,
             ];
         }));
 
