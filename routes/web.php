@@ -3,6 +3,7 @@
 use App\Http\Controllers\CashDeskController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Manager\CashDeskOrdersController;
 use App\Http\Controllers\Manager\MenuCategoryController;
 use App\Http\Controllers\Manager\MenuCategoryDishController;
 use App\Http\Controllers\Manager\SalesController;
@@ -64,8 +65,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('cashdesk')->name('cashdesk.')->group(function () {
         Route::get('', [CashDeskController::class, 'index'])->name('index');
         Route::get('dishes', [CashDeskController::class, 'dishes'])->name('dishes');
-        Route::get('orders', [CashDeskController::class, 'orders'])->name('orders');
-        Route::get('orders/{order}', [CashDeskController::class, 'orders_show'])->name('orders.show');
+
+        Route::prefix('orders')->name('orders.')->group(function () {
+            Route::get('', [CashDeskOrdersController::class, 'index'])->name('index');
+            Route::get('{order}', [CashDeskOrdersController::class, 'show'])->name('show');
+            Route::patch('{order}/status', [CashDeskOrdersController::class, 'status'])->name('status');
+        });
     });
 
     Route::get('dashboard', function () {

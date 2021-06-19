@@ -23,7 +23,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Bestellingen</h5>
                         <p class="card-text">Het systeem om bestellingen die gemaakt zijn in te zien</p>
-                        <inertia-link class="btn btn-primary" :href="route('cashdesk.orders')">Openen</inertia-link>
+                        <inertia-link class="btn btn-primary" :href="route('cashdesk.orders.index')">Openen</inertia-link>
                     </div>
                 </div>
             </div>

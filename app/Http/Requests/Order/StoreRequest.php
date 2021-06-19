@@ -38,7 +38,7 @@ class StoreRequest extends FormRequest
                 'array',
                 'min:1',
             ],
-            'cart.*.dish_id' => [
+            'cart.*.id' => [
                 'required',
                 'integer',
                 Rule::exists(Dish::class, 'id'),

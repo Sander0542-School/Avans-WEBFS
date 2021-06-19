@@ -7,7 +7,7 @@
                         <inertia-link :href="route('cashdesk.index')">Kassa</inertia-link>
                     </li>
                     <li class="breadcrumb-item">
-                        <inertia-link :href="route('cashdesk.orders')">Bestellingen</inertia-link>
+                        <inertia-link :href="route('cashdesk.orders.index')">Bestellingen</inertia-link>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Order #{{ order.id }}</li>
                 </ol>
@@ -20,6 +20,14 @@
                     <div class="card-body">
                         <h5 class="card-title">Order #{{ order.id }}</h5>
                         <table class="table table-sm table-borderless">
+                            <tr>
+                                <th>Verkoper</th>
+                                <td>{{ order.seller }}</td>
+                            </tr>
+                            <tr>
+                                <th>Type</th>
+                                <td>{{ order.table_number === null ? 'Afhalen' : `Tafel ${order.table_number}` }}</td>
+                            </tr>
                             <tr>
                                 <th>Prijs</th>
                                 <td>&euro; {{ order.price.toFixed(2) }}</td>

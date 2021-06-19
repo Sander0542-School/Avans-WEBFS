@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderStatus;
 use App\Http\Requests\Order\StoreRequest;
 use App\Models\Dish;
 use App\Models\MenuCategory;
@@ -37,6 +38,7 @@ class OrderController extends Controller
 
         $order = Order::create([
             'table_number' => $data['table_order'] ? $data['table_number'] : null,
+            'status' => OrderStatus::OPEN(),
         ]);
 
         if ($order != null) {
@@ -57,7 +59,7 @@ class OrderController extends Controller
             //
             //}
 
-            return redirect()->back()->with('success', 'De bestelling kon niet worden verwerkt');
+            return redirect()->back()->with('success', 'De bestelling is succesvol verwerkt');
         }
 
         return redirect()->back()->with('error', 'De bestelling kon niet worden verwerkt');
