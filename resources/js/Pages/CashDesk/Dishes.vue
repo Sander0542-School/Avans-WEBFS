@@ -1,5 +1,14 @@
 <template>
     <app-layout>
+        <template #header>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><inertia-link :href="route('cashdesk.index')">Kassa</inertia-link></li>
+                    <li class="breadcrumb-item active" aria-current="page">Verkopen</li>
+                </ol>
+            </nav>
+        </template>
+
         <div class="row p-3">
             <div class="col-sm-7 ">
                 <div class="card p-3 pb-2 overflow-auto vh-100">

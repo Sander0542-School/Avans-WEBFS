@@ -21,6 +21,12 @@ class OrderDish extends Model
         'rice_option_id',
     ];
 
+    protected $casts = [
+        'unit_price' => 'double',
+        'btw' => 'integer',
+        'amount' => 'integer',
+    ];
+
     public function dish()
     {
         return $this->belongsTo(Dish::class, 'dish_id', 'id');

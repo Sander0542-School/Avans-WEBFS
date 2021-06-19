@@ -3,7 +3,7 @@
         display: flex;
 
         > .dotted {
-            border-bottom: 2px dotted yellow;
+            border-bottom: 2px dotted $primary_color;
             flex-grow: 1;
 
             margin-left: 4px;

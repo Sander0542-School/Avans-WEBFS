@@ -1,5 +1,5 @@
 $layout-border-width: 4px;
-$layout-border-color: yellow;
+$layout-border-color: $primary_color;
 
 $layout-cell-size: 12px;
 $layout-cell-size-sm: 12px;
@@ -11,7 +11,7 @@ $layout-cell-size-xl: 25px;
     background-color: red;
     min-height: 100vh;
 
-    color: yellow !important;
+    color: $primary_color !important;
 
     .layout-grid {
         min-height: inherit;
@@ -114,4 +114,8 @@ $layout-cell-size-xl: 25px;
             }
         }
     }
+}
+
+.text-yellow {
+    color: $primary_color;
 }

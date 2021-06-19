@@ -18,7 +18,7 @@
                         <td>{{ product.quantity }}x</td>
                         <td>&euro; {{ product.price_inc.toFixed(2) }}</td>
                         <td>
-                            <button @click="removeFromCart(product.id)">-</button>
+                            <i class="fas fa-minus-circle c-pointer" @click="removeFromCart(product.id)"></i>
                         </td>
                     </tr>
                     </tbody>
@@ -30,6 +30,22 @@
                     </tfoot>
                 </table>
 
+                <div class="form-group">
+                    <div class="custom-control custom-checkbox">
+                        <jet-checkbox id="table_order" name="table_order" v-model:checked="form.table_order" />
+
+                        <label class="custom-control-label" for="table_order">
+                            Bestelling voor tafel
+                        </label>
+                    </div>
+                    <jet-input-error :message="form.errors.table_order" class="mt-2"/>
+                </div>
+                <div v-if="form.table_order" class="form-group">
+                    <jet-label for="table_number" value="Tafel nummer"/>
+                    <jet-input id="table_number" type="number" :class="{ 'is-invalid': form.errors.table_number }" v-model="form.table_number" ref="table_number" autocomplete="table_number"/>
+                    <jet-input-error :message="form.errors.table_number" class="mt-2 text-yellow"/>
+                </div>
+
                 <button @click="orderCart" class="btn gd-navigation float-right">Bestellen</button>
                 <button @click="removeAllFromCart" class="btn gd-navigation">Leeg maken</button>
             </div>
@@ -40,8 +56,20 @@
 
 <script>
 import {mapGetters, mapState} from 'vuex';
+import JetButton from '@/Jetstream/Button';
+import JetCheckbox from '@/Jetstream/Checkbox';
+import JetInput from '@/Jetstream/Input';
+import JetInputError from '@/Jetstream/InputError';
+import JetLabel from '@/Jetstream/Label';
 
 export default {
+    components: {
+        JetButton,
+        JetCheckbox,
+        JetInput,
+        JetInputError,
+        JetLabel,
+    },
     computed: {
         ...mapState([
             "cart"
@@ -55,8 +83,8 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
-                dishes: this.cart,
-                table: ''
+                table_order: true,
+                table_number: null,
             }),
         }
     },
@@ -71,7 +99,16 @@ export default {
             this.$store.dispatch("removeAllFromCart");
         },
         orderCart() {
-            alert('yolo');
+            this.form.transform((data) => ({
+                ...data,
+                cart: this.cart.map((dish) => ({
+                    id: dish.id,
+                    amount: dish.quantity,
+                    remark: dish.remark,
+                }))
+            })).post(route('order.store'), {
+                preserveScroll: true
+            });
         },
     }
 }
