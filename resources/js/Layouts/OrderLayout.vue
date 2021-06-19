@@ -1,5 +1,7 @@
 <template>
     <home-layout>
+        <input v-model="tableNumber" placeholder="Table Number">
+        <button @click="askHelp()" type="button" class="btn btn-primary">Ask for help</button>
         <div class="row">
             <div class="col">
                 <slot/>
@@ -20,6 +22,11 @@ export default {
         HomeLayout,
         OrderCart
     },
+    data() {
+        return {
+            tableNumber: ''
+        }
+    },
     props: {
         menu: Array,
         dishes: Array,
@@ -27,5 +34,11 @@ export default {
     created() {
         this.$store.dispatch("fetchDishes", this.dishes);
     },
+    methods: {
+        askHelp(){
+            let data = {'table_number': this.tableNumber};
+            this.$inertia.post('/help', data)
+        }
+    }
 }
 </script>

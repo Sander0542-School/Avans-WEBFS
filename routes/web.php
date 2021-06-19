@@ -4,6 +4,7 @@ use App\Http\Controllers\CashDeskController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\CashDeskOrdersController;
+use App\Http\Controllers\Manager\CustomerController;
 use App\Http\Controllers\Manager\MenuCategoryController;
 use App\Http\Controllers\Manager\MenuCategoryDishController;
 use App\Http\Controllers\Manager\SalesController;
@@ -31,6 +32,9 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/help', [CustomerController::class, 'index'])->name('post');
+Route::post('/help', [CustomerController::class, 'storeRequest']);
 
 Route::name('home.')->group(function () {
     Route::get('', [HomeController::class, 'index'])->name('index');
