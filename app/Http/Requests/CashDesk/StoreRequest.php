@@ -40,6 +40,12 @@ class StoreRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'cart.*.dish_rice_option' => [
+                'max:150',
+                'integer',
+                'nullable',
+                'exists:dish_rice_options,id'
+            ],
         ];
     }
 

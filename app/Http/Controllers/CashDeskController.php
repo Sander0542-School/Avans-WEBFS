@@ -35,6 +35,7 @@ class CashDeskController extends Controller
         ]);
 
         $order->lines()->createMany(collect($data['cart'])->map(function ($line) {
+
             $dish = Dish::findOrFail($line['id']);
 
             return [
