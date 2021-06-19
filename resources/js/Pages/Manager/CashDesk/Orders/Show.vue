@@ -4,10 +4,10 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <inertia-link :href="route('cashdesk.index')">Kassa</inertia-link>
+                        <inertia-link :href="route('manager.cashdesk.index')">Kassa</inertia-link>
                     </li>
                     <li class="breadcrumb-item">
-                        <inertia-link :href="route('cashdesk.orders.index')">Bestellingen</inertia-link>
+                        <inertia-link :href="route('manager.cashdesk.orders.index')">Bestellingen</inertia-link>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Order #{{ order.id }}</li>
                 </ol>
@@ -25,8 +25,12 @@
                                 <td>{{ order.seller }}</td>
                             </tr>
                             <tr>
-                                <th>Type</th>
+                                <th>Locatie</th>
                                 <td>{{ order.table_number === null ? 'Afhalen' : `Tafel ${order.table_number}` }}</td>
+                            </tr>
+                            <tr>
+                                <th>Datum</th>
+                                <td>{{ moment(order.created_at).format('D-M-Y HH:mm') }}</td>
                             </tr>
                             <tr>
                                 <th>Prijs</th>
@@ -35,10 +39,6 @@
                             <tr>
                                 <th>Prijs (inc)</th>
                                 <td>&euro; {{ order.price_inc.toFixed(2) }}</td>
-                            </tr>
-                            <tr>
-                                <th>Datum</th>
-                                <td>{{ moment(order.created_at).format('D-M-Y HH:mm') }}</td>
                             </tr>
                         </table>
                     </div>

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Manager;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CashDesk\StoreRequest;
 use App\Models\Dish;
 use App\Models\DishRiceOption;
@@ -13,12 +14,12 @@ class CashDeskController extends Controller
 {
     public function index()
     {
-        return Inertia::render('CashDesk/Index');
+        return Inertia::render('Manager/CashDesk/Index');
     }
 
     public function dishes()
     {
-        return Inertia::render('CashDesk/Dishes', [
+        return Inertia::render('Manager/CashDesk/Dishes', [
             'menu' => MenuCategory::menuData(),
             'dish_rice_options' => DishRiceOption::all(),
             'dishes' => Dish::cartData(),
