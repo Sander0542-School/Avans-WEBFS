@@ -8,9 +8,9 @@
                 </button>
             </div>
             <div class="form-group mx-sm-3 mb-2">
-                <input type="number" class="form-control" v-model="tableNumber" placeholder="Tafel nummer">
+                <input type="number" class="form-control" v-model="tableNumber" :placeholder="$t('input.tableNumber') ">
             </div>
-            <button :disabled="tableNumber === ''" @click="askHelp()" type="button" class="btn gd-navigation">Vraag om hulp</button>
+            <button :disabled="tableNumber === ''" @click="askHelp()" type="button" class="btn gd-navigation">{{ $t('input.assistance') }}</button>
         </form>
 
         <div class="row">
