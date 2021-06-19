@@ -1,7 +1,7 @@
 <template>
     <div class="home-layout">
         <div class="layout-grid">
-            <div class="header">
+            <div class="header d-print-none">
                 <div class="row m-0">
                     <div class="col text-center d-none d-lg-block">
                         <img class="header-dragon" src="/pictures/dragon-small.png" alt="Golden Dragon">
@@ -57,16 +57,18 @@
                         <div class="my-4 text-center">
                             <h2>Chinees Indische Specialiteiten</h2>
                             <h1>De Gouden Draak</h1>
-                            <inertia-link class="btn gd-navigation" :href="route('home.menu')">{{ $t('pages.menu') }}</inertia-link>
-                            <inertia-link class="btn gd-navigation" :href="route('home.news')">{{ $t('pages.news') }}</inertia-link>
-                            <inertia-link class="btn gd-navigation" :href="route('home.contact')">{{ $t('pages.contact') }}</inertia-link>
-                            <inertia-link class="btn gd-navigation" :href="route('order.index')">{{ $t('pages.order') }}</inertia-link>
+                            <div class="d-print-none">
+                                <inertia-link class="btn gd-navigation" :href="route('home.menu')">{{ $t('pages.menu') }}</inertia-link>
+                                <inertia-link class="btn gd-navigation" :href="route('home.news')">{{ $t('pages.news') }}</inertia-link>
+                                <inertia-link class="btn gd-navigation" :href="route('home.contact')">{{ $t('pages.contact') }}</inertia-link>
+                                <inertia-link class="btn gd-navigation" :href="route('order.index')">{{ $t('pages.order') }}</inertia-link>
+                            </div>
                         </div>
                     </div>
                     <img class="content-dragon float-right d-none d-md-block transform-vert" src="/pictures/dragon-small.png" alt="GoudenDraak"/>
                 </div>
                 <slot/>
-                <div class="content-footer">
+                <div class="content-footer d-print-none">
                     <div class="languages text-center">
                         <span class="c-pointer mx-2" v-for="locale in $i18n.availableLocales" :key="locale" @click="changeLocale(locale)">{{ $t(`locale.${locale}`) }}</span>
                     </div>

@@ -47,6 +47,7 @@ Route::name('home.')->group(function () {
 Route::prefix('order')->name('order.')->group(function () {
     Route::get('', [OrderController::class, 'index'])->name('index');
     Route::get('{category}', [OrderController::class, 'show'])->name('show');
+    Route::get('confirmed/{order}/{token?}', [OrderController::class, 'confirmed'])->name('confirmed');
     Route::post('', [OrderController::class, 'store'])->name('store')->middleware(['throttle:1,10']);
 });
 

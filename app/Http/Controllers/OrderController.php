@@ -9,6 +9,7 @@ use App\Models\CustomerHelpRequest;
 use App\Models\Dish;
 use App\Models\MenuCategory;
 use App\Models\Order;
+use App\Models\OrderDish;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -40,6 +41,7 @@ class OrderController extends Controller
         $data = $request->validated();
 
         $order = Order::create([
+            'customer' => $data['customer'],
             'table_number' => $data['table_order'] ? $data['table_number'] : null,
             'status' => OrderStatus::OPEN(),
         ]);
@@ -58,14 +60,22 @@ class OrderController extends Controller
                 ];
             }));
 
-            //if (! $data['table_order']) { //TODO(3.4)
-            //
-            //}
-
-            return redirect()->back()->with('success', 'De bestelling is succesvol verwerkt');
+            return redirect()->route('order.confirmed', [$order->id, 'token' => $order->customer_token])->with('success', 'De bestelling is succesvol verwerkt');
         }
 
         return redirect()->back()->with('error', 'De bestelling kon niet worden verwerkt');
+    }
+
+    public function confirmed(Order $order, $token = null)
+    {
+        return Inertia::render('Order/Confirmed', [
+            'order' => $token == $order->customer_token ? [
+                'id' => $order->id,
+                'customer' => $order->customer ?? '???',
+                'price_inc' => $order->price_inc,
+                'qr_code_url' => 'https://api.qrserver.com/v1/create-qr-code/?data='.$order->qr_code,
+            ] : null,
+        ]);
     }
 
     public function employeeAssistance(Request $request)

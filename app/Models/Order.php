@@ -14,6 +14,7 @@ class Order extends Model
 
     protected $fillable = [
         'user_id',
+        'customer',
         'table_number',
         'status',
     ];
@@ -45,5 +46,22 @@ class Order extends Model
     public function getPriceIncAttribute()
     {
         return $this->lines->sum('price_inc');
+    }
+
+    public function getCustomerTokenAttribute()
+    {
+        return $this->customer != null ? collect(str_split($this->customer))->map(fn($char) => ord($char))->sum() : null;
+    }
+
+    public function getQrCodeAttribute()
+    {
+        $qrCode = '';
+        $qrCode .= $this->id;
+        $qrCode .= '|';
+        $qrCode .= $this->customer ?? 'customer';
+        $qrCode .= '|';
+        $qrCode .= $this->dishes->map(fn(Dish $dish) => $dish->number.($dish->addition ?? ''))->join('|');
+
+        return $qrCode;
     }
 }
