@@ -65,6 +65,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('cashdesk')->name('cashdesk.')->group(function () {
         Route::get('', [CashDeskController::class, 'index'])->name('index');
         Route::get('dishes', [CashDeskController::class, 'dishes'])->name('dishes');
+        Route::post('store', [CashDeskController::class, 'store'])->name('store');
 
         Route::prefix('orders')->name('orders.')->group(function () {
             Route::get('', [CashDeskOrdersController::class, 'index'])->name('index');

@@ -1,7 +1,29 @@
 <template>
     <div class="">
         <div class="card p-3 ">
-            <div v-for="product in cart" :key="product.id">
+
+            <div v-if="$page.props.flash.message" class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $page.props.flash.message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div v-if="$page.props.errors.createOrder ">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <ul class="p-0 m-0 list-unstyled">
+                        <div v-for="error in $page.props.errors.createOrder">
+                            <li> {{ error }}</li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+
+            <div v-for="(product, index) in cart" :key="product.id">
+
                 <div class="d-flex justify-content-between">
                     <h5 class="mb-6">{{ product.number }}</h5>
                     <h5 class="mb-6">{{ product.name }}</h5>
@@ -16,8 +38,15 @@
                             +
                         </button>
                     </div>
+                    <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" :data-target="'#collapseCartItem' + product.id" aria-expanded="false" :aria-controls="'collapseCartItem' + product.id">
+                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                    </button>
                 </div>
-                <!--                <textarea class="form-control" v-model="product.notes" placeholder="Beschrijving toevoegen"></textarea>-->
+                <div class="collapse" v-bind:id="'collapseCartItem' + product.id">
+                    <div class="card card-body">
+                        <textarea class="form-control" v-model="product.remark" placeholder="Beschrijving toevoegen"></textarea>
+                    </div>
+                </div>
                 <hr/>
             </div>
             <div class="box">
@@ -30,7 +59,9 @@
                         <a @click="removeAllFromCart()" href="#" class="btn btn-light btn-block"><i class="fa fa-times-circle "></i> Verwijderen</a>
                     </div>
                     <div class="col-md-6">
-                        <a @click="removeAllFromCart()" href="#" class="btn btn-primary btn-block"><i class="fa fa-shopping-bag"></i> Afrekenen</a>
+                        <button :disabled="isDisabled" @click.prevent="submit()" type="button" class="btn btn-primary btn-block">
+                            <i class="fa fa-shopping-bag"></i> Afrekenen
+                        </button>
                     </div>
                 </div>
             </div>
@@ -43,6 +74,9 @@ import {mapGetters, mapState} from 'vuex';
 
 export default {
     name: "Cart",
+    props: {
+        errors: {}
+    },
     computed: {
         ...mapState([
             "cart"
@@ -52,6 +86,10 @@ export default {
             "cartTotalAmount",
             "cartTotalAmountInc",
         ]),
+        isDisabled: function () {
+            console.log(this.cart);
+            return this.cart.length === 0;
+        }
     },
     methods: {
         addToCart(dishId) {
@@ -62,7 +100,14 @@ export default {
         },
         removeAllFromCart() {
             this.$store.dispatch("removeAllFromCart");
-        }
+        },
+        submit() {
+            let data = {'cart': this.cart};
+            this.$inertia.post('/cashdesk/store', data, {
+                errorBag: 'createOrder',
+                onSuccess: () => this.removeAllFromCart()
+            })
+        },
     }
 }
 </script>
