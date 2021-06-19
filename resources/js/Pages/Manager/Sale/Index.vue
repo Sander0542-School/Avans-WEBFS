@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="sale in sales" :key="sale.date_key">
-                    <td class="text-nowrap">{{ sale.date_formatted }}</td>
+                    <td class="text-nowrap">{{ moment(sale.date).format('D-M-Y') }}</td>
                     <td class="text-nowrap">{{ sale.orders }}</td>
                     <td class="text-right text-nowrap">
                         <a target="_blank" class="btn btn-primary" :href="route('manager.sales.download', sale.date_key)">

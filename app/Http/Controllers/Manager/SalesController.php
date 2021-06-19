@@ -29,7 +29,6 @@ class SalesController extends Controller
 
                 return [
                     'date' => $date,
-                    'date_formatted' => $date->format('m-d-Y'),
                     'date_key' => $date->format('Y-m-d'),
                     'orders' => $order->orders ?? 0,
                 ];

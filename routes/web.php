@@ -3,10 +3,11 @@
 use App\Http\Controllers\CashDeskController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Manager\CashDeskOrdersController;
 use App\Http\Controllers\Manager\MenuCategoryController;
 use App\Http\Controllers\Manager\MenuCategoryDishController;
 use App\Http\Controllers\Manager\SalesController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -42,6 +43,7 @@ Route::name('home.')->group(function () {
 Route::prefix('order')->name('order.')->group(function () {
     Route::get('', [OrderController::class, 'index'])->name('index');
     Route::get('{category}', [OrderController::class, 'show'])->name('show');
+    Route::post('', [OrderController::class, 'store'])->name('store')->middleware(['throttle:1,10']);
 });
 
 Route::prefix('download')->name('download.')->group(function () {
@@ -64,6 +66,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('', [CashDeskController::class, 'index'])->name('index');
         Route::get('dishes', [CashDeskController::class, 'dishes'])->name('dishes');
         Route::post('store', [CashDeskController::class, 'store'])->name('store');
+
+        Route::prefix('orders')->name('orders.')->group(function () {
+            Route::get('', [CashDeskOrdersController::class, 'index'])->name('index');
+            Route::get('{order}', [CashDeskOrdersController::class, 'show'])->name('show');
+            Route::patch('{order}/status', [CashDeskOrdersController::class, 'status'])->name('status');
+        });
     });
 
     Route::get('dashboard', function () {

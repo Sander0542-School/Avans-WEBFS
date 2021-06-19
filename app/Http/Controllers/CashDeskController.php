@@ -7,7 +7,7 @@ use App\Models\Dish;
 use App\Models\MenuCategory;
 use App\Models\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\OrderDish;
 use Inertia\Inertia;
 
 class CashDeskController extends Controller

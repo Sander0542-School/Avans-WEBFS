@@ -7,6 +7,7 @@ import { cart } from './store/cart'
 import { setupI18n } from './i18n';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
+import moment from 'moment';
 
 const el = document.getElementById('app');
 
@@ -26,6 +27,11 @@ createApp({
         locale: 'nl',
         fallbackLocale: 'nl',
     }))
+    .mixin({
+        created: function () {
+            this.moment = moment;
+        }
+    })
     .mount(el);
 
 InertiaProgress.init({ color: '#4B5563' });
