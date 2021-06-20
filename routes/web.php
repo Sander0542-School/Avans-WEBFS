@@ -47,7 +47,7 @@ Route::prefix('order')->name('order.')->group(function () {
     Route::get('{category}', [OrderController::class, 'show'])->name('show');
     Route::get('confirmed/{order}/{token?}', [OrderController::class, 'confirmed'])->name('confirmed');
     Route::post('', [OrderController::class, 'store'])->name('store')->middleware(['throttle:1,10']);
-    Route::post('/help', [OrderController::class, 'employeeAssistance']);
+    Route::post('help', [OrderController::class, 'employeeAssistance']);
 });
 
 Route::prefix('download')->name('download.')->group(function () {
