@@ -27,6 +27,10 @@
               Menu
             </jet-nav-link>
 
+            <jet-nav-link :href="route('manager.discounts.index')" :active="route().current().startsWith('manager.discounts.')">
+              Kortingen
+            </jet-nav-link>
+
             <jet-nav-link :href="route('manager.sales.index')" :active="route().current().startsWith('manager.sales.')">
               Verkoop
             </jet-nav-link>
@@ -138,6 +142,8 @@
       <slot></slot>
     </main>
   </div>
+
+  <slot name="modals"></slot>
 </template>
 
 <script>

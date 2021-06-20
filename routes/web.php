@@ -4,6 +4,7 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\CashDeskController;
 use App\Http\Controllers\Manager\CashDeskOrdersController;
+use App\Http\Controllers\Manager\DiscountController;
 use App\Http\Controllers\Manager\MenuCategoryController;
 use App\Http\Controllers\Manager\MenuCategoryDishController;
 use App\Http\Controllers\Manager\SalesController;
@@ -73,6 +74,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
                 Route::patch('{order}/status', [CashDeskOrdersController::class, 'status'])->name('status');
             });
         });
+
+        Route::resource('discounts', DiscountController::class)->except(['show', 'destroy']);
+        Route::post('discounts/{discount}/add/{dishId}', [DiscountController::class, 'addDish'])->name('discounts.add');
+        Route::post('discounts/{discount}/remove/{dishId}', [DiscountController::class, 'removeDish'])->name('discounts.remove');
     });
 
     Route::get('dashboard', function () {

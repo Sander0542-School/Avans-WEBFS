@@ -59,7 +59,7 @@
                         </thead>
                         <tbody>
                         <tr v-if="order.dishes.length <= 0">
-                            <td class="text-center" colspan="5">Deze bestelling bevat geen gerechten</td>
+                            <td class="text-center" colspan="6">Deze bestelling bevat geen gerechten</td>
                         </tr>
                         <tr v-else v-for="dish in order.dishes">
                             <td>{{ dish.number }}{{ dish.addition }}</td>

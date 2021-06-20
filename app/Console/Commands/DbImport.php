@@ -89,7 +89,7 @@ class DbImport extends Command
                 'addition' => $dish->menunummer == null ? null : $dish->menu_toevoeging,
                 'name' => html_entity_decode($dish->naam),
                 'description' => html_entity_decode($dish->beschrijving ?? ''),
-                'price' => round(($dish->price / (100 + self::BTW)) * 100, 2),
+                'base_price' => round(($dish->price / (100 + self::BTW)) * 100, 2),
                 'btw' => self::BTW,
             ]);
         });

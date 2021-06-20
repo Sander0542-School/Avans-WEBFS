@@ -50,7 +50,7 @@ class MenuCategoryDishController extends Controller
             'addition' => $data['addition'],
             'name' => $data['name'],
             'description' => $data['description'] ?? '',
-            'price' => $data['price'],
+            'base_price' => $data['price'],
             'btw' => $data['btw'],
             'spiciness_level' => $data['spiciness_level'],
         ]);
@@ -92,7 +92,7 @@ class MenuCategoryDishController extends Controller
                 'addition' => $dish->addition,
                 'name' => $dish->name,
                 'description' => $dish->description,
-                'price' => $dish->price,
+                'price' => $dish->base_price,
                 'btw' => $dish->btw,
                 'spiciness_level' => $dish->spiciness_level,
                 'allergies' => $dish->allergies->map(function (Allergy $allergy) {
@@ -121,7 +121,7 @@ class MenuCategoryDishController extends Controller
             'addition' => $data['addition'],
             'name' => $data['name'],
             'description' => $data['description'] ?? '',
-            'price' => $data['price'],
+            'base_price' => $data['price'],
             'btw' => $data['btw'],
             'spiciness_level' => $data['spiciness_level'],
         ]);

@@ -81,7 +81,7 @@ class MenuCategoryController extends Controller
                         'name' => $dish->name,
                         'number' => $dish->number,
                         'addition' => $dish->addition,
-                        'price' => $dish->price,
+                        'price' => $dish->base_price,
                         'btw' => $dish->btw,
                         'deleted' => $dish->trashed(),
                     ];
