@@ -46,7 +46,7 @@ class OrderController extends Controller
 
         if ($order != null) {
             $order->lines()->createMany(collect($data['cart'])->map(function ($item) {
-                $dish = Dish::find($item['id'], ['id', 'price', 'btw']);
+                $dish = Dish::find($item['id'], ['id', 'base_price', 'btw']);
 
                 return [
                     'dish_id' => $dish->id,
