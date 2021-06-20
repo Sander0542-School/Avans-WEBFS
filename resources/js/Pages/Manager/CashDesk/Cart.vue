@@ -24,17 +24,17 @@
 
             <div v-for="(product, index) in cart" :key="product.id">
 
-                <div class="d-flex justify-content-between">
+                <div class="d-flex  justify-content-between">
                     <h5 class="mb-6">{{ product.number }}</h5>
                     <h5 class="mb-6">{{ product.name }}</h5>
-                    <h5>&euro;{{ (product.quantity * product.price_inc).toFixed(2) }}</h5>
+                    <h5>&euro; {{ (product.quantity * product.price_inc).toFixed(2) }}</h5>
                     <h5 class="mb-6">{{ product.quantity }}</h5>
 
                     <div>
                         <button @click="removeFromCart(product.id)" class="btn btn-danger btn-sm" style="width: 25px;">
                             -
                         </button>
-                        <button @click="addToCart(product.id)" class="btn btn-success btn-sm ml-1" style="width: 25px;">
+                        <button @click="addToCart(product.id)" class="btn btn-success btn-sm " style="width: 25px;">
                             +
                         </button>
                     </div>

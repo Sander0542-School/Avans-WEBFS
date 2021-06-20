@@ -10,7 +10,7 @@
         </template>
 
         <div class="row p-3">
-            <div class="col-sm-7 ">
+            <div class="col-sm-12 col-sm-7 col-lg-8">
                 <div class="card p-3 pb-2 overflow-auto vh-100">
                     <select class="form-control mb-1" v-model="filterCategory">
                         <option selected value="all">All</option>
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-5 ">
+            <div class="col-lg-4">
                 <cart :dish_rice_options="dish_rice_options"></cart>
             </div>
         </div>
