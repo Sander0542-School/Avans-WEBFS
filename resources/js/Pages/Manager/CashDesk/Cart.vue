@@ -1,14 +1,6 @@
 <template>
-    <div class="">
-        <div class="card p-3 ">
-
-            <div v-if="$page.props.flash.message" class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ $page.props.flash.message }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
+    <div>
+        <div class="card p-3">
             <div v-if="$page.props.errors.createOrder ">
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">

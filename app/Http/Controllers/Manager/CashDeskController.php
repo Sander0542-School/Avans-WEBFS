@@ -47,6 +47,6 @@ class CashDeskController extends Controller
             ];
         }));
 
-        return redirect()->back()->with('message', 'Order succesvol aangemaakt.');
+        return redirect()->back()->with('success', 'Order succesvol aangemaakt.');
     }
 }

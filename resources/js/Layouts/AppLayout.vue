@@ -139,6 +139,10 @@
 
         <!-- Page Content -->
         <main class="container my-5">
+            <div v-if="$page.props.flash.visible" :class="$page.props.flash.type" class="alert fade show" role="alert">
+                {{ $page.props.flash.message }}
+            </div>
+
             <slot></slot>
         </main>
     </div>

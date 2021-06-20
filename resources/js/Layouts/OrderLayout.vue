@@ -1,10 +1,10 @@
 <template>
     <home-layout>
         <div class="row">
-            <div class="col">
+            <div class="col-12 col-lg-8">
                 <slot/>
             </div>
-            <div class="col col-lg-4">
+            <div class="col-12 col-lg-4">
                 <order-cart/>
             </div>
         </div>
