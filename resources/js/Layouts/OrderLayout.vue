@@ -42,7 +42,7 @@ export default {
     methods: {
         askHelp(){
             let data = {'table_number': this.tableNumber};
-            this.$inertia.post('order/help', data)
+            this.$inertia.post(this.route('order.help'), data)
             alert(this.$t('input.question'));
         }
     }

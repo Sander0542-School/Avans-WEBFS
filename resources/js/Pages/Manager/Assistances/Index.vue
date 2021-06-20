@@ -45,7 +45,7 @@ export default {
     },
     methods: {
         confirm(id) {
-            this.$inertia.post('assistances/confirm', {'id': id}, {
+            this.$inertia.post(this.route('manager.assistances.confirm'), {'id': id}, {
                 onSuccess: () => this.removeAssistance(id)
             })
         },
