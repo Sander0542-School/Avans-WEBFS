@@ -66,15 +66,15 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::get('download/{date}', [SalesController::class, 'download'])->name('download');
         });
 
+        Route::prefix('assistances')->name('assistances.')->group(function () {
+            Route::get('', [CashDeskController::class, 'assistance'])->name('index');
+            Route::post('confirm', [CashDeskRequestsController::class, 'confirm'])->name('confirm');
+        });
+
         Route::prefix('cashdesk')->name('cashdesk.')->group(function () {
             Route::get('', [CashDeskController::class, 'index'])->name('index');
             Route::get('dishes', [CashDeskController::class, 'dishes'])->name('dishes');
             Route::post('store', [CashDeskController::class, 'store'])->name('store');
-
-            Route::prefix('assistances')->name('assistances.')->group(function () {
-                Route::get('', [CashDeskController::class, 'assistance'])->name('index');
-                Route::post('confirm', [CashDeskRequestsController::class, 'confirm'])->name('confirm');
-            });
 
             Route::prefix('orders')->name('orders.')->group(function () {
                 Route::get('', [CashDeskOrdersController::class, 'index'])->name('index');

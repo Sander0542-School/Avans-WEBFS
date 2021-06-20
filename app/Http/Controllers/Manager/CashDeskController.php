@@ -29,7 +29,7 @@ class CashDeskController extends Controller
 
     public function assistance()
     {
-        return Inertia::render('Manager/CashDesk/Assistances/Index', [
+        return Inertia::render('Manager/Assistances/Index', [
                 'assistances' => CustomerHelpRequest::where('confirmed', false)->get(),
             ]);
     }
