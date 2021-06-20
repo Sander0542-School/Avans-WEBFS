@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\CashDeskController;
 use App\Http\Controllers\Manager\CashDeskOrdersController;
 use App\Http\Controllers\Manager\DiscountController;
+use App\Http\Controllers\Manager\CashDeskRequestsController;
 use App\Http\Controllers\Manager\MenuCategoryController;
 use App\Http\Controllers\Manager\MenuCategoryDishController;
 use App\Http\Controllers\Manager\SalesController;
@@ -46,6 +47,7 @@ Route::prefix('order')->name('order.')->group(function () {
     Route::get('{category}', [OrderController::class, 'show'])->name('show');
     Route::get('confirmed/{order}/{token?}', [OrderController::class, 'confirmed'])->name('confirmed');
     Route::post('', [OrderController::class, 'store'])->name('store')->middleware(['throttle:1,10']);
+    Route::post('help', [OrderController::class, 'employeeAssistance'])->name('help');
 });
 
 Route::prefix('download')->name('download.')->group(function () {
@@ -61,6 +63,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::prefix('sales')->name('sales.')->group(function () {
             Route::get('', [SalesController::class, 'index'])->name('index');
             Route::get('download/{date}', [SalesController::class, 'download'])->name('download');
+        });
+
+        Route::prefix('assistances')->name('assistances.')->group(function () {
+            Route::get('', [CashDeskController::class, 'assistance'])->name('index');
+            Route::post('confirm', [CashDeskRequestsController::class, 'confirm'])->name('confirm');
         });
 
         Route::prefix('cashdesk')->name('cashdesk.')->group(function () {

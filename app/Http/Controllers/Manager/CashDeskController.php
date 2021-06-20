@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CashDesk\StoreRequest;
+use App\Models\CustomerHelpRequest;
 use App\Models\Dish;
 use App\Models\DishRiceOption;
 use App\Models\MenuCategory;
@@ -26,6 +27,13 @@ class CashDeskController extends Controller
         ]);
     }
 
+    public function assistance()
+    {
+        return Inertia::render('Manager/Assistances/Index', [
+                'assistances' => CustomerHelpRequest::where('confirmed', false)->get(),
+            ]);
+    }
+
     public function store(StoreRequest $request)
     {
         $data = $request->validated();
@@ -36,6 +44,7 @@ class CashDeskController extends Controller
         ]);
 
         $order->lines()->createMany(collect($data['cart'])->map(function ($line) {
+
             $dish = Dish::findOrFail($line['id']);
 
             return [

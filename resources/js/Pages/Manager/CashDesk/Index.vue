@@ -27,6 +27,15 @@
                     </div>
                 </div>
             </div>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Vragen</h5>
+                        <p class="card-text">Het systeem om vragen in te zien van klanten.</p>
+                        <inertia-link class="btn btn-primary" :href="route('manager.assistances.index')">Openen</inertia-link>
+                    </div>
+                </div>
+            </div>
         </div>
     </app-layout>
 </template>

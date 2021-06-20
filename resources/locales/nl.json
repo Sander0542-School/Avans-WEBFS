@@ -11,5 +11,10 @@
     },
     "layout": {
         "discount": "Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!"
+    },
+    "input": {
+        "assistance": "Vraag om hulp",
+        "tableNumber": "Tafelnummer",
+        "question": "Vraag verstuurd, u wordt zo geholpen"
     }
 }
