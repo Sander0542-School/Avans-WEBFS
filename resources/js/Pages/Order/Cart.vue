@@ -112,7 +112,7 @@ export default {
                     amount: dish.quantity,
                     remark: dish.remark,
                 }))
-            })).post(route('order.store'), {
+            })).post(this.route('order.store'), {
                 preserveScroll: true
             });
         },

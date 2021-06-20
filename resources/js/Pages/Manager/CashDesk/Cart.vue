@@ -110,7 +110,7 @@ export default {
         },
         submit() {
             let data = {'cart': this.cart};
-            this.$inertia.post('store', data, {
+            this.$inertia.post(this.route('manager.cashdesk.store'), data, {
                 errorBag: 'createOrder',
                 onSuccess: () => this.removeAllFromCart()
             })
