@@ -74,7 +74,6 @@ export default {
 
         Echo.private('request.created')
             .listen('CustomerRequestCreated', (e) => {
-                alert(e.request.table_number + 'Has been published now');
                 console.log(e.request.table_number)
                 console.log("Loaded")
             });
