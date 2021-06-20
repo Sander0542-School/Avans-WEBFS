@@ -14,6 +14,7 @@
     },
     "input": {
         "assistance": "Vraag om hulp",
-        "tableNumber": "Tafelnummer"
+        "tableNumber": "Tafelnummer",
+        "question": "Vraag verstuurd, u wordt zo geholpen"
     }
 }

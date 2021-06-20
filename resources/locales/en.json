@@ -10,6 +10,7 @@
     },
     "input": {
         "assistance": "Ask for help",
-        "tableNumber": "Table number"
+        "tableNumber": "Table number",
+        "question": "Question sent, you will be helped soon"
     }
 }

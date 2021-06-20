@@ -1,12 +1,6 @@
 <template>
     <home-layout>
         <form class="form-inline">
-            <div v-if="$page.props.flash.message" class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ $page.props.flash.message }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
             <div class="form-group mx-sm-3 mb-2">
                 <input type="number" class="form-control" v-model="tableNumber" :placeholder="$t('input.tableNumber') ">
             </div>
@@ -49,6 +43,7 @@ export default {
         askHelp(){
             let data = {'table_number': this.tableNumber};
             this.$inertia.post('/help', data)
+            alert(this.$t('input.question'));
         }
     }
 }
