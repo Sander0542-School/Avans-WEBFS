@@ -161,7 +161,7 @@ class DiscountController extends Controller
             $success = DishDiscount::where('discount_id', $discount->id)->where('dish_id', $dish->id)->delete();
 
             if ($success) {
-                return redirect()->back()->with('success', 'Het gerecht is succesvol verwijderd aan de korting');
+                return redirect()->back()->with('success', 'Het gerecht is succesvol verwijderd van de korting');
             }
         }
 

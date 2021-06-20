@@ -4,6 +4,7 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\CashDeskController;
 use App\Http\Controllers\Manager\CashDeskOrdersController;
+use App\Http\Controllers\Manager\DashboardController;
 use App\Http\Controllers\Manager\DiscountController;
 use App\Http\Controllers\Manager\CashDeskRequestsController;
 use App\Http\Controllers\Manager\MenuCategoryController;
@@ -56,6 +57,10 @@ Route::prefix('download')->name('download.')->group(function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('manager')->name('manager.')->group(function () {
+        Route::prefix('dashboard')->name('dashboard.')->group(function () {
+            Route::get('', [DashboardController::class, 'index'])->name('index');
+        });
+
         Route::resource('menus', MenuCategoryController::class)->except(['edit']);
         Route::resource('menus.dishes', MenuCategoryDishController::class)->except(['index', 'show']);
         Route::put('menus/{menu}/dishes/{dish}/restore', [MenuCategoryDishController::class, 'restore'])->name('menus.dishes.restore');
@@ -86,8 +91,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('discounts/{discount}/add/{dishId}', [DiscountController::class, 'addDish'])->name('discounts.add');
         Route::post('discounts/{discount}/remove/{dishId}', [DiscountController::class, 'removeDish'])->name('discounts.remove');
     });
-
-    Route::get('dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
 });
