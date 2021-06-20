@@ -41,8 +41,6 @@ export default {
         Echo.private('request.created')
             .listen('CustomerRequestCreated', (e) => {
                 this.assistances.push(e.request)
-                console.log(e.request.table_number)
-                console.log("Loaded")
             });
     },
     methods: {
