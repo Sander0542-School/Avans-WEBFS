@@ -1,8 +1,8 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/js/locale-en-json.js": "/js/locale-en-json.js",
-    "/js/locale-nl-json.js": "/js/locale-nl-json.js",
-    "/css/app.css": "/css/app.css",
-    "/fonts/chinesetakeaway-webfont.woff": "/fonts/chinesetakeaway-webfont.woff",
-    "/fonts/chinesetakeaway-webfont.woff2": "/fonts/chinesetakeaway-webfont.woff2"
+    "/js/app.js": "/js/app.js?id=0316c65f1dd7ee0af11e",
+    "/js/locale-en-json.js": "/js/locale-en-json.js?id=7dd9faf7143df2cdef08",
+    "/js/locale-nl-json.js": "/js/locale-nl-json.js?id=69c1ddf513f9bd5f2d90",
+    "/css/app.css": "/css/app.css?id=09991219d6768876aac7",
+    "/fonts/chinesetakeaway-webfont.woff": "/fonts/chinesetakeaway-webfont.woff?id=1b18cfc716135fa1498e",
+    "/fonts/chinesetakeaway-webfont.woff2": "/fonts/chinesetakeaway-webfont.woff2?id=1c031514fccdd0a459d9"
 }

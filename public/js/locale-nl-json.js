@@ -1,14 +1,1 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["locale-nl-json"],{
-
-/***/ "./resources/locales/nl.json":
-/*!***********************************!*\
-  !*** ./resources/locales/nl.json ***!
-  \***********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = JSON.parse('{"locale":{"nl":"Nederlands","en":"English"},"layout":{"discount":"Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!"}}');
-
-/***/ })
-
-}]);
+(self.webpackChunk=self.webpackChunk||[]).push([[131],{6794:e=>{"use strict";e.exports=JSON.parse('{"locale":{"nl":"Nederlands","en":"English"},"pages":{"menu":"Menu","news":"Nieuws","contact":"Contact","order":"Bestellen"},"layout":{"discount":"Welkom bij De Gouden Draak. Klik op deze tekst om de aanbiedingen van deze week te zien!"},"input":{"assistance":"Vraag om hulp","tableNumber":"Tafelnummer","question":"Vraag verstuurd, u wordt zo geholpen"}}')}}]);

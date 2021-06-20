@@ -1,14 +1,1 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["locale-en-json"],{
-
-/***/ "./resources/locales/en.json":
-/*!***********************************!*\
-  !*** ./resources/locales/en.json ***!
-  \***********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = JSON.parse('{"layout":{"discount":"Welcome to De Gouden Draak. Click on this text to see this week\'s offers!"}}');
-
-/***/ })
-
-}]);
+(self.webpackChunk=self.webpackChunk||[]).push([[551],{5642:e=>{"use strict";e.exports=JSON.parse('{"layout":{"discount":"Welcome to De Gouden Draak. Click on this text to see this week\'s offers!"},"pages":{"menu":"Menu","news":"News","contact":"Contact","order":"Order"},"input":{"assistance":"Ask for help","tableNumber":"Table number","question":"Question sent, you will be helped soon"}}')}}]);
